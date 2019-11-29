@@ -1,8 +1,6 @@
 pipeline {   
 
- agent {     
-    label 'Slave_Induccion'   
- } 
+ agent any
   
  options { 
    buildDiscarder(logRotator(numToKeepStr: '3')) 
@@ -11,32 +9,39 @@ pipeline {
    
  tools {     
    jdk 'JDK8_Centos' 
-   gradle 'Gradle4.5_Centos'
+   gradle 'Gradle5.6_Centos'
  } 
  
  stages{     
     stage('Checkout'){ 
-	    steps{ 
-	     echo "------------>Checkout<------------" 
-	     checkout([ 
-	      $class: 'GitSCM',  
-	      branches: [[name: '*/master']],  
-	      doGenerateSubmoduleConfigurations: false,  
-	      extensions: [],  
-	      gitTool: 'Git_Centos',  
-	      submoduleCfg: [],  
-	      userRemoteConfigs: [[ 
-		     credentialsId: 'GitHub_jairorios93',  
-		     url:'https://github.com/jairorios93/AlquilerVehiculos.git'
-	      ]] 
-       ]) 
-      } 
-     }     
+	 steps{ 
+	  echo "------------>Checkout<------------" 
+	  checkout([ 
+	   $class: 'GitSCM',  
+	   branches: [[name: '*/master']],  
+	   doGenerateSubmoduleConfigurations: false,  
+	   extensions: [],  
+	   gitTool: 'Git_Centos',  
+	   submoduleCfg: [],  
+	   userRemoteConfigs: [[ 
+		credentialsId: 'GitHub_jairorios93',  
+		url:'https://github.com/jairorios93/AlquilerVehiculos.git'
+	   ]] 
+      ]) 
+     } 
+    }     
     
+	stage('Build project') {
+	 steps {
+	  sh 'gradle --b ./AlquilerVehiculos/build.gradle clean'
+	  sh 'gradle --b ./AlquilerVehiculos/build.gradle build'
+	 }
+	}
+	
     stage('Compile & Unit Tests') { 
      steps{     
       echo "------------>Unit Tests<------------" 
-	     sh 'gradle --b ./build.gradle test'
+	  sh 'gradle --b ./build.gradle test​'
      }
     } 
      
