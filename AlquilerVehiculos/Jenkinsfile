@@ -15,32 +15,44 @@ pipeline {
  } 
  
  stages{     
-    stage('Checkout') {      
-     steps{        
-      echo "------------>Checkout<------------"      
-     }
-    }     
+    stage('Checkout'){ 
+	    steps{ 
+	     echo "------------>Checkout<------------" 
+	     checkout([ 
+	      $class: 'GitSCM',  
+	      branches: [[name: '*/master']],  
+	      doGenerateSubmoduleConfigurations: false,  
+	      extensions: [],  
+	      gitTool: 'Git_Centos',  
+	      submoduleCfg: [],  
+	      userRemoteConfigs: [[ 
+		     credentialsId: 'GitHub_jairorios93',  
+		     url:'https://github.com/jairorios93/AlquilerVehiculos.git'
+	      ]] 
+       ]) 
+      } 
+     }     
     
     stage('Compile & Unit Tests') { 
      steps{     
       echo "------------>Unit Tests<------------" 
-      }
-     } 
+	     sh 'gradle --b ./build.gradle test'
+     }
+    } 
      
      stage('Static Code Analysis') {   
       steps{    
-       echo '------------>Análisis de código estático<------------'         
-        withSonarQubeEnv('Sonar') { 
-         sh "${tool name: 'SonarScanner', 
-         type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner 
-         -Dproject.settings=sonar-project.properties"         
+       echo '----------------->Analisis de Código estático<-----------------'
+        withSonarQubeEnv('Sonar'){
+        sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
         }       
        }     
       } 
       
      stage('Build') {
       steps { 
-       echo "------------>Build<------------" 
+       echo "-------->Build<---------"
+       sh 'gradle --b ./AlquilerVehiculos/build.gradle build -x test'
       }     
      }    
     } 
@@ -51,9 +63,13 @@ pipeline {
   }     
   success {  
    echo 'This will run only if successful' 
+   junit 'build/test-results/test/*.xml'
   }  
   failure {   
-   echo 'This will run only if failed' 
+   echo 'This will run only if failed'
+   mail(to: 'jairo.rios@ceiba.com.co',
+        subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+        body: "Something is wrong with ${env.BUILD_URL}")
   }    
   unstable {      
    echo 'This will run only if the run was marked as unstable'    
