@@ -11,8 +11,8 @@ import com.ceiba.alquilervehiculos.dominio.repositorio.persistencia.SistemaDePer
 @ComponentScan(basePackages = "com.ceiba")
 public class AlquilerVehiculosApplication {
 
-	private static SistemaDePersistencia sistemaPersistencia;
-	private static RepositorioVehiculo repositorioVehiculo;
+	public static SistemaDePersistencia sistemaPersistencia;
+	public static RepositorioVehiculo repositorioVehiculo;
 
 	public static void main(String[] args) {
 		sistemaPersistencia = new SistemaDePersistencia();
