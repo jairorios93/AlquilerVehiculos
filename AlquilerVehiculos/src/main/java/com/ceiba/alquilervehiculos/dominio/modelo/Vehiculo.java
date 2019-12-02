@@ -1,4 +1,4 @@
-package com.ceiba.AlquilerVehiculos;
+package com.ceiba.alquilervehiculos.dominio.modelo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

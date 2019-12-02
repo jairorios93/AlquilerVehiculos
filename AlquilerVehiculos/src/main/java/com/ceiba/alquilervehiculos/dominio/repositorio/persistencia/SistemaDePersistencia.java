@@ -1,10 +1,9 @@
-package com.ceiba.persistencia.sistema;
+package com.ceiba.alquilervehiculos.dominio.repositorio.persistencia;
 
 import javax.persistence.EntityManager;
 
-import com.ceiba.dominio.Vehiculo.RepositorioVehiculo;
-import com.ceiba.persistencia.conexion.ConexionJPA;
-import com.ceiba.persistencia.repositorio.RepositorioVehiculoPersistente;
+import com.ceiba.alquilervehiculos.dominio.conexion.ConexionJPA;
+import com.ceiba.alquilervehiculos.dominio.repositorio.RepositorioVehiculo;
 
 public class SistemaDePersistencia {
 
@@ -25,6 +24,5 @@ public class SistemaDePersistencia {
 	public void terminar() {
 		entityManager.getTransaction().commit();
 	}
-	
-	
+
 }

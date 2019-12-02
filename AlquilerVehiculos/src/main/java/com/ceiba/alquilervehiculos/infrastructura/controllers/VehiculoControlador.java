@@ -1,4 +1,4 @@
-package com.ceiba.infraestructura.controladores;
+package com.ceiba.alquilervehiculos.infrastructura.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

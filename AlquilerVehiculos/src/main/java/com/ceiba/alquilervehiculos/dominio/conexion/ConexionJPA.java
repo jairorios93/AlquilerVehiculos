@@ -1,4 +1,4 @@
-package com.ceiba.persistencia.conexion;
+package com.ceiba.alquilervehiculos.dominio.conexion;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
