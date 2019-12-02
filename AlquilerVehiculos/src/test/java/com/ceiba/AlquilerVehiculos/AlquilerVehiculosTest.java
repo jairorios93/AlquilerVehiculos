@@ -2,13 +2,24 @@ package com.ceiba.AlquilerVehiculos;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class AlquilerVehiculosTest {
+import com.ceiba.dominio.Vehiculo.RepositorioVehiculo;
+import com.ceiba.persistencia.sistema.SistemaDePersistencia;
+
+public class AlquilerVehiculosTest {
+
+	
+
+	@BeforeEach
+	public void iniciar() {
+		
+	}
 
 	@Test
-	void test() {
-		assertEquals(true, true);
+	public void test() {
+		assertTrue(true);
 	}
 
 }
