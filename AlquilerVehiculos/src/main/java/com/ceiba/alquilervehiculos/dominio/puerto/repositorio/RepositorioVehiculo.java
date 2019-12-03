@@ -1,8 +1,8 @@
-package com.ceiba.alquilervehiculos.aplicacion.servicios.interfaces;
+package com.ceiba.alquilervehiculos.dominio.puerto.repositorio;
 
 import com.ceiba.alquilervehiculos.dominio.modelo.Vehiculo;
 
-public interface IVehiculoServicio {
+public interface RepositorioVehiculo {
 
 	public void registrarVehiculo(Vehiculo vehiculo);
 }

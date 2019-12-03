@@ -1,6 +1,6 @@
-package com.ceiba.alquilervehiculos.dominio.modelo;
+package com.ceiba.alquilervehiculos.aplicacion.comando;
 
-public class Vehiculo {
+public class ComandoVehiculo {
 
 	private Long id;
 
@@ -14,10 +14,10 @@ public class Vehiculo {
 
 	private double precio;
 
-	public Vehiculo() {
+	public ComandoVehiculo() {
 	}
 
-	public Vehiculo(String placa, String modelo, String marca, String color, double precio) {
+	public ComandoVehiculo(String placa, String modelo, String marca, String color, double precio) {
 		this.placa = placa;
 		this.modelo = modelo;
 		this.marca = marca;

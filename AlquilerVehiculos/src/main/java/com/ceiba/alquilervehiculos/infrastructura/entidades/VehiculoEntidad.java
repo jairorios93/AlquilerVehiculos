@@ -1,4 +1,4 @@
-package com.ceiba.alquilervehiculos.dominio.modelo.entidad;
+package com.ceiba.alquilervehiculos.infrastructura.entidades;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +12,8 @@ public class VehiculoEntidad {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	private String placa;
+
 	private String modelo;
 
 	private String marca;
@@ -23,7 +25,8 @@ public class VehiculoEntidad {
 	public VehiculoEntidad() {
 	}
 
-	public VehiculoEntidad(String modelo, String marca, String color, double precio) {
+	public VehiculoEntidad(String placa, String modelo, String marca, String color, double precio) {
+		this.placa = placa;
 		this.modelo = modelo;
 		this.marca = marca;
 		this.color = color;
@@ -36,6 +39,14 @@ public class VehiculoEntidad {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getPlaca() {
+		return placa;
+	}
+
+	public void setPlaca(String placa) {
+		this.placa = placa;
 	}
 
 	public String getModelo() {
