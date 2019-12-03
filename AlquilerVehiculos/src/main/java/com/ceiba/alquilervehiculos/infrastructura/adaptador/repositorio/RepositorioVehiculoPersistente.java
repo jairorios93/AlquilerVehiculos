@@ -4,8 +4,8 @@ import org.springframework.stereotype.Repository;
 
 import com.ceiba.alquilervehiculos.dominio.modelo.Vehiculo;
 import com.ceiba.alquilervehiculos.dominio.puerto.repositorio.RepositorioVehiculo;
-import com.ceiba.alquilervehiculos.dominio.repositorio.persistencia.builder.VehiculoBuilder;
 import com.ceiba.alquilervehiculos.infrastructura.VehiculoRepositorioJPA;
+import com.ceiba.alquilervehiculos.infrastructura.adaptador.builder.VehiculoBuilder;
 
 @Repository
 public class RepositorioVehiculoPersistente implements RepositorioVehiculo {

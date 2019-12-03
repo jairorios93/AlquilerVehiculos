@@ -1,4 +1,4 @@
-package com.ceiba.alquilervehiculos.dominio.repositorio.persistencia.builder;
+package com.ceiba.alquilervehiculos.infrastructura.adaptador.builder;
 
 import com.ceiba.alquilervehiculos.dominio.modelo.Vehiculo;
 import com.ceiba.alquilervehiculos.infrastructura.entidades.VehiculoEntidad;
