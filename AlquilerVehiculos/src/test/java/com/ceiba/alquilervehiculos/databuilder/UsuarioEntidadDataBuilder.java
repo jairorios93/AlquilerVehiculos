@@ -7,7 +7,7 @@ import com.ceiba.alquilervehiculos.infrastructura.entidades.UsuarioEntidad;
 
 public class UsuarioEntidadDataBuilder {
 
-	private String cedula;
+	private Long cedula;
 
 	private String nombres;
 
@@ -16,13 +16,13 @@ public class UsuarioEntidadDataBuilder {
 	private Date fechaNacimiento;
 
 	public UsuarioEntidadDataBuilder() {
-		cedula = "1094935130";
+		cedula = Long.valueOf("1094935130");
 		nombres = "Jairo Andres";
 		apellidos = "Rios Franco";
 		fechaNacimiento = Calendar.getInstance().getTime();
 	}
 
-	public UsuarioEntidad conCedula(String cedula) {
+	public UsuarioEntidad conCedula(Long cedula) {
 		return new UsuarioEntidad(cedula, nombres, apellidos, fechaNacimiento);
 	}
 

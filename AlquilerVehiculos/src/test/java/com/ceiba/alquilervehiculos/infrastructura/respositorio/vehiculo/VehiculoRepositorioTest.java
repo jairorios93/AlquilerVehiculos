@@ -1,7 +1,11 @@
 package com.ceiba.alquilervehiculos.infrastructura.respositorio.vehiculo;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,5 +29,18 @@ public class VehiculoRepositorioTest {
 		assertDoesNotThrow(() -> vehiculoRepositorioJPA.save(vehiculoEntidad));
 		assertDoesNotThrow(() -> repositorioVehiculoPersistente.registrarVehiculo(vehiculo));
 
+	}
+
+	@Test
+	void buscarVehiculo() {
+		VehiculoEntidad vehiculoEntidad = new VehiculoEntidadDataBuilder().build();
+		Optional<VehiculoEntidad> vehiculo = Optional.of(vehiculoEntidad);
+		VehiculoRepositorioJPA vehiculoRepositorioJPA = mock(VehiculoRepositorioJPA.class);
+		RepositorioVehiculoPersistente repositorioVehiculoPersistente = new RepositorioVehiculoPersistente(
+				vehiculoRepositorioJPA);
+
+		when(vehiculoRepositorioJPA.findById(1L)).thenReturn(vehiculo);
+
+		assertNotNull(repositorioVehiculoPersistente.buscarVehiculo("ASF12"));
 	}
 }

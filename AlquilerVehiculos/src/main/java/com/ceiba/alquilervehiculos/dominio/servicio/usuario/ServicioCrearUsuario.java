@@ -11,7 +11,7 @@ public class ServicioCrearUsuario {
 		this.repositorioUsuario = repositorioUsuario;
 	}
 
-	public void ejecutar(Usuario usuario) {
+	public void registrarUsuario(Usuario usuario) {
 		// Logica
 		repositorioUsuario.registrarUsuario(usuario);
 	}

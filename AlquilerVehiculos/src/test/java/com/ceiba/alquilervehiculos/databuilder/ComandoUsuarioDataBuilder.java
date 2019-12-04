@@ -7,7 +7,7 @@ import com.ceiba.alquilervehiculos.aplicacion.comando.ComandoUsuario;
 
 public class ComandoUsuarioDataBuilder {
 
-	private String cedula;
+	private Long cedula;
 
 	private String nombres;
 
@@ -16,7 +16,7 @@ public class ComandoUsuarioDataBuilder {
 	private Date fechaNacimiento;
 
 	public ComandoUsuarioDataBuilder() {
-		cedula = "109493513";
+		cedula = Long.valueOf("109493513");
 		nombres = "Jairo Andres";
 		apellidos = "Rios Franco";
 		fechaNacimiento = Calendar.getInstance().getTime();

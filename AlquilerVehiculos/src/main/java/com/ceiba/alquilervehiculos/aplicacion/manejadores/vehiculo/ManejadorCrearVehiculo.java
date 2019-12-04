@@ -22,6 +22,6 @@ public class ManejadorCrearVehiculo {
 	@Transactional
 	public void registrarVehiculo(ComandoVehiculo comandoVehiculo) {
 		Vehiculo vehiculo = fabricaVehiculo.crearVehiculo(comandoVehiculo);
-		servicioCrearVehiculo.ejecutar(vehiculo);
+		servicioCrearVehiculo.registrarVehiculo(vehiculo);
 	}
 }

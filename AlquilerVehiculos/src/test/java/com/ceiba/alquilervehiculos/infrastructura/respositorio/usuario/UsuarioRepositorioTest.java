@@ -1,7 +1,11 @@
 package com.ceiba.alquilervehiculos.infrastructura.respositorio.usuario;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,5 +30,18 @@ public class UsuarioRepositorioTest {
 
 		assertDoesNotThrow(() -> usuarioRepositorioJPA.save(usuarioEntidad));
 		assertDoesNotThrow(() -> repositorioUsuarioPersistente.registrarUsuario(usuario));
+	}
+
+	@Test
+	void buscarUsuario() {
+		UsuarioEntidad usuarioEntidad = new UsuarioEntidadDataBuilder().build();
+		Optional<UsuarioEntidad> usuario = Optional.of(usuarioEntidad);
+		UsuarioRepositorioJPA usuarioRepositorioJPA = mock(UsuarioRepositorioJPA.class);
+		RepositorioUsuarioPersistente repositorioUsuarioPersistente = new RepositorioUsuarioPersistente(
+				usuarioRepositorioJPA);
+
+		when(usuarioRepositorioJPA.findById(1L)).thenReturn(usuario);
+
+		assertNotNull(repositorioUsuarioPersistente.buscarUsuario(1L));
 	}
 }

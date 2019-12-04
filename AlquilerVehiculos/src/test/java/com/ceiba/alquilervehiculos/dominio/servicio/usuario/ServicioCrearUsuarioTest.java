@@ -17,6 +17,6 @@ public class ServicioCrearUsuarioTest {
 		RepositorioUsuario repositorioUsuario = mock(RepositorioUsuario.class);
 
 		ServicioCrearUsuario service = new ServicioCrearUsuario(repositorioUsuario);
-		assertDoesNotThrow(() -> service.ejecutar(usuario));
+		assertDoesNotThrow(() -> service.registrarUsuario(usuario));
 	}
 }

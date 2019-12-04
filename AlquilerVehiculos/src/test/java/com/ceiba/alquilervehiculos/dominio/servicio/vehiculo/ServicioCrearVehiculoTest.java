@@ -17,6 +17,6 @@ public class ServicioCrearVehiculoTest {
 		RepositorioVehiculo repositorioVehiculo = mock(RepositorioVehiculo.class);
 		ServicioCrearVehiculo service = new ServicioCrearVehiculo(repositorioVehiculo);
 
-		assertDoesNotThrow(() -> service.ejecutar(vehiculo));
+		assertDoesNotThrow(() -> service.registrarVehiculo(vehiculo));
 	}
 }

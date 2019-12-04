@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class ComandoUsuario {
 
-	private String cedula;
+	private Long cedula;
 
 	private String nombres;
 
@@ -15,19 +15,20 @@ public class ComandoUsuario {
 	public ComandoUsuario() {
 	}
 
-	public ComandoUsuario(String cedula, String nombres, String apellidos, Date fechaNacimiento) {
+	public Long getCedula() {
+		return cedula;
+	}
+
+	public void setCedula(Long cedula) {
+		this.cedula = cedula;
+	}
+
+	public ComandoUsuario(Long cedula, String nombres, String apellidos, Date fechaNacimiento) {
+		super();
 		this.cedula = cedula;
 		this.nombres = nombres;
 		this.apellidos = apellidos;
 		this.fechaNacimiento = fechaNacimiento;
-	}
-
-	public String getCedula() {
-		return cedula;
-	}
-
-	public void setCedula(String cedula) {
-		this.cedula = cedula;
 	}
 
 	public String getNombres() {

@@ -11,7 +11,7 @@ import javax.persistence.Table;
 public class UsuarioEntidad {
 
 	@Id
-	private String cedula;
+	private Long cedula;
 
 	private String nombres;
 
@@ -22,18 +22,18 @@ public class UsuarioEntidad {
 	public UsuarioEntidad() {
 	}
 
-	public UsuarioEntidad(String cedula, String nombres, String apellidos, Date fechaNacimiento) {
+	public UsuarioEntidad(Long cedula, String nombres, String apellidos, Date fechaNacimiento) {
 		this.cedula = cedula;
 		this.nombres = nombres;
 		this.apellidos = apellidos;
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public String getCedula() {
+	public Long getCedula() {
 		return cedula;
 	}
 
-	public void setCedula(String cedula) {
+	public void setCedula(Long cedula) {
 		this.cedula = cedula;
 	}
 

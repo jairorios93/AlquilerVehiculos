@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Usuario {
 
-	private String cedula;
+	private Long cedula;
 
 	private String nombres;
 
@@ -15,18 +15,19 @@ public class Usuario {
 	public Usuario() {
 	}
 
-	public Usuario(String cedula, String nombres, String apellidos, Date fechaNacimiento) {
+	public Usuario(Long cedula, String nombres, String apellidos, Date fechaNacimiento) {
+		super();
 		this.cedula = cedula;
 		this.nombres = nombres;
 		this.apellidos = apellidos;
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public String getCedula() {
+	public Long getCedula() {
 		return cedula;
 	}
 
-	public void setCedula(String cedula) {
+	public void setCedula(Long cedula) {
 		this.cedula = cedula;
 	}
 

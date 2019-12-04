@@ -11,7 +11,7 @@ public class ServicioCrearVehiculo {
 		this.repositorioVehiculo = repositorioVehiculo;
 	}
 
-	public void ejecutar(Vehiculo vehiculo) {
+	public void registrarVehiculo(Vehiculo vehiculo) {
 		// Logica
 		repositorioVehiculo.registrarVehiculo(vehiculo);
 	}

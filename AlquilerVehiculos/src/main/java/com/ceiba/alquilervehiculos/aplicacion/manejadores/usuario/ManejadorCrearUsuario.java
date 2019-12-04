@@ -22,6 +22,6 @@ public class ManejadorCrearUsuario {
 	@Transactional
 	public void registrarUsuario(ComandoUsuario comandoUsuario) {
 		Usuario usuario = fabricaUsuario.crearUsuario(comandoUsuario);
-		servicioCrearUsuario.ejecutar(usuario);
+		servicioCrearUsuario.registrarUsuario(usuario);
 	}
 }
