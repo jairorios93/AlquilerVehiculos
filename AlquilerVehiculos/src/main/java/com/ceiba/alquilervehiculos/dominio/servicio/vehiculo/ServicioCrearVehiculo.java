@@ -14,6 +14,5 @@ public class ServicioCrearVehiculo {
 	public void ejecutar(Vehiculo vehiculo) {
 		// Logica
 		repositorioVehiculo.registrarVehiculo(vehiculo);
-
 	}
 }

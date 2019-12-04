@@ -22,7 +22,7 @@ public class ComandoVehiculoDataBuilder {
 		precio = 45000;
 	}
 
-	public ComandoVehiculo conplaca(String placa) {
+	public ComandoVehiculo conPlaca(String placa) {
 		return new ComandoVehiculo(placa, modelo, marca, color, precio);
 	}
 

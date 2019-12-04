@@ -1,4 +1,4 @@
-package com.ceiba.alquilervehiculos.infrastructura.respositorio;
+package com.ceiba.alquilervehiculos.infrastructura.respositorio.vehiculo;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.mockito.Mockito.mock;
