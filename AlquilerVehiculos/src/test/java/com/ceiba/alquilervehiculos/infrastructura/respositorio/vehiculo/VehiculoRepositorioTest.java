@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.util.Optional;
-
 import org.junit.jupiter.api.Test;
 
 import com.ceiba.alquilervehiculos.databuilder.VehiculoDataBuilder;
@@ -34,12 +32,11 @@ public class VehiculoRepositorioTest {
 	@Test
 	void buscarVehiculo() {
 		VehiculoEntidad vehiculoEntidad = new VehiculoEntidadDataBuilder().build();
-		Optional<VehiculoEntidad> vehiculo = Optional.of(vehiculoEntidad);
 		VehiculoRepositorioJPA vehiculoRepositorioJPA = mock(VehiculoRepositorioJPA.class);
 		RepositorioVehiculoPersistente repositorioVehiculoPersistente = new RepositorioVehiculoPersistente(
 				vehiculoRepositorioJPA);
 
-		when(vehiculoRepositorioJPA.findById(1L)).thenReturn(vehiculo);
+		when(vehiculoRepositorioJPA.buscarVehiculo("ASF12")).thenReturn(vehiculoEntidad);
 
 		assertNotNull(repositorioVehiculoPersistente.buscarVehiculo("ASF12"));
 	}

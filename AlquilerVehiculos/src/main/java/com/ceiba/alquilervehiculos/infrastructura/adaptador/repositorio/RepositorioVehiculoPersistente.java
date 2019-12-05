@@ -1,8 +1,5 @@
 package com.ceiba.alquilervehiculos.infrastructura.adaptador.repositorio;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Repository;
 
@@ -29,14 +26,10 @@ public class RepositorioVehiculoPersistente implements RepositorioVehiculo {
 	}
 
 	@Override
-	public List<ComandoVehiculo> buscarVehiculo(String placa) {
-		List<VehiculoEntidad> vehiculosEntidad = vehiculoRepositorioJPA.findAll();
-		List<ComandoVehiculo> vehiculosComando = new ArrayList<>();
-		for (VehiculoEntidad vehiculo : vehiculosEntidad) {
-			ComandoVehiculo comandoVehiculo = modelMapper.map(vehiculo, ComandoVehiculo.class);
-			vehiculosComando.add(comandoVehiculo);
-		}
-		return vehiculosComando;
+	public ComandoVehiculo buscarVehiculo(String placa) {
+		VehiculoEntidad entidad = vehiculoRepositorioJPA.buscarVehiculo(placa);
+		ComandoVehiculo comandoVehiculo = modelMapper.map(entidad, ComandoVehiculo.class);
+		return comandoVehiculo;
 	}
 
 }
