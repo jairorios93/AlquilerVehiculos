@@ -1,5 +1,6 @@
 package com.ceiba.alquilervehiculos.infrastructura.entidades;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,22 +13,29 @@ public class VehiculoEntidad {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private Long id;
 
+	@Column(name = "placa")
 	private String placa;
 
+	@Column(name = "modelo")
 	private String modelo;
 
+	@Column(name = "marca")
 	private String marca;
 
+	@Column(name = "color")
 	private String color;
 
+	@Column(name = "precio")
 	private double precio;
 
 	public VehiculoEntidad() {
 	}
 
-	public VehiculoEntidad(String placa, String modelo, String marca, String color, double precio) {
+	public VehiculoEntidad(Long id, String placa, String modelo, String marca, String color, double precio) {
+		this.id = id;
 		this.placa = placa;
 		this.modelo = modelo;
 		this.marca = marca;

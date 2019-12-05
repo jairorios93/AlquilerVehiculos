@@ -21,22 +21,6 @@ public class UsuarioDataBuilder {
 		apellidos = "Rios Franco";
 		fechaNacimiento = Calendar.getInstance().getTime();
 	}
-
-	public Usuario conCedula(Long cedula) {
-		return new Usuario(cedula, nombres, apellidos, fechaNacimiento);
-	}
-
-	public Usuario conNombres(String nombres) {
-		return new Usuario(cedula, nombres, apellidos, fechaNacimiento);
-	}
-
-	public Usuario conApellidos(String apellidos) {
-		return new Usuario(cedula, nombres, apellidos, fechaNacimiento);
-	}
-
-	public Usuario conFechaNacimiento(Date fechaNacimiento) {
-		return new Usuario(cedula, nombres, apellidos, fechaNacimiento);
-	}
 	
 	public Usuario build() {
 		return new Usuario(cedula, nombres, apellidos, fechaNacimiento);

@@ -3,8 +3,10 @@ package com.ceiba.alquilervehiculos.infrastructura.configuracion;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.ceiba.alquilervehiculos.dominio.puerto.repositorio.RepositorioAlquilarVehiculo;
 import com.ceiba.alquilervehiculos.dominio.puerto.repositorio.RepositorioUsuario;
 import com.ceiba.alquilervehiculos.dominio.puerto.repositorio.RepositorioVehiculo;
+import com.ceiba.alquilervehiculos.dominio.servicio.alquiler.ServicioAlquilarVehiculo;
 import com.ceiba.alquilervehiculos.dominio.servicio.usuario.ServicioBuscarUsuario;
 import com.ceiba.alquilervehiculos.dominio.servicio.usuario.ServicioCrearUsuario;
 import com.ceiba.alquilervehiculos.dominio.servicio.vehiculo.ServicioBuscarVehiculo;
@@ -32,4 +34,11 @@ public class ServicioBean {
 	public ServicioBuscarUsuario crearServicioBuscarUsuario(RepositorioUsuario repositorioUsuario) {
 		return new ServicioBuscarUsuario(repositorioUsuario);
 	}
+
+	@Bean
+	public ServicioAlquilarVehiculo crearServicioAlquilarVehiculo(
+			RepositorioAlquilarVehiculo repositorioAlquilarVehiculo) {
+		return new ServicioAlquilarVehiculo(repositorioAlquilarVehiculo);
+	}
+
 }

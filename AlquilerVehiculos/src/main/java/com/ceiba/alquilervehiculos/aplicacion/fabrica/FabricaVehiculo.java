@@ -9,7 +9,7 @@ import com.ceiba.alquilervehiculos.dominio.modelo.Vehiculo;
 public class FabricaVehiculo {
 
 	public Vehiculo crearVehiculo(ComandoVehiculo comandoVehiculo) {
-		return new Vehiculo(comandoVehiculo.getPlaca(), comandoVehiculo.getModelo(), comandoVehiculo.getMarca(),
-				comandoVehiculo.getColor(), comandoVehiculo.getPrecio());
+		return new Vehiculo(comandoVehiculo.getId(), comandoVehiculo.getPlaca(), comandoVehiculo.getModelo(),
+				comandoVehiculo.getMarca(), comandoVehiculo.getColor(), comandoVehiculo.getPrecio());
 	}
 }

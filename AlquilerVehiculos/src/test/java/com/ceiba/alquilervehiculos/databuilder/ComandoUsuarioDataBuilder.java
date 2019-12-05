@@ -22,10 +22,6 @@ public class ComandoUsuarioDataBuilder {
 		fechaNacimiento = Calendar.getInstance().getTime();
 	}
 
-	public ComandoUsuario conNombre(String nombres) {
-		return new ComandoUsuario(cedula, nombres, apellidos, fechaNacimiento);
-	}
-
 	public ComandoUsuario build() {
 		return new ComandoUsuario(cedula, nombres, apellidos, fechaNacimiento);
 	}

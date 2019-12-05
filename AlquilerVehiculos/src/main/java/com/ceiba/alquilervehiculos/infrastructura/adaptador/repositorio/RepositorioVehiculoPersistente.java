@@ -10,7 +10,6 @@ import com.ceiba.alquilervehiculos.aplicacion.comando.ComandoVehiculo;
 import com.ceiba.alquilervehiculos.dominio.modelo.Vehiculo;
 import com.ceiba.alquilervehiculos.dominio.puerto.repositorio.RepositorioVehiculo;
 import com.ceiba.alquilervehiculos.infrastructura.VehiculoRepositorioJPA;
-import com.ceiba.alquilervehiculos.infrastructura.adaptador.builder.VehiculoBuilder;
 import com.ceiba.alquilervehiculos.infrastructura.entidades.VehiculoEntidad;
 
 @Repository
@@ -25,7 +24,8 @@ public class RepositorioVehiculoPersistente implements RepositorioVehiculo {
 
 	@Override
 	public void registrarVehiculo(Vehiculo vehiculo) {
-		vehiculoRepositorioJPA.save(VehiculoBuilder.convertirAEntity(vehiculo));
+		VehiculoEntidad vehiculoEntidad = modelMapper.map(vehiculo, VehiculoEntidad.class);
+		vehiculoRepositorioJPA.save(vehiculoEntidad);
 	}
 
 	@Override

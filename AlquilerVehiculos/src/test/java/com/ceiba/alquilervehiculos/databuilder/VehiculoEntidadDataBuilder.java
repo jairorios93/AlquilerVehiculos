@@ -4,6 +4,8 @@ import com.ceiba.alquilervehiculos.infrastructura.entidades.VehiculoEntidad;
 
 public class VehiculoEntidadDataBuilder {
 
+	private Long id;
+
 	private String placa;
 
 	private String modelo;
@@ -20,29 +22,10 @@ public class VehiculoEntidadDataBuilder {
 		marca = "BMW";
 		color = "Gris";
 		precio = 45000;
-	}
-
-	public VehiculoEntidad conPlaca(String placa) {
-		return new VehiculoEntidad(placa, modelo, marca, color, precio);
-	}
-
-	public VehiculoEntidad conModelo(String modelo) {
-		return new VehiculoEntidad(placa, modelo, marca, color, precio);
-	}
-
-	public VehiculoEntidad conMarca(String marca) {
-		return new VehiculoEntidad(placa, modelo, marca, color, precio);
-	}
-
-	public VehiculoEntidad conColor(String color) {
-		return new VehiculoEntidad(placa, modelo, marca, color, precio);
-	}
-
-	public VehiculoEntidad conPrecio(double precio) {
-		return new VehiculoEntidad(placa, modelo, marca, color, precio);
+		id = 1L;
 	}
 
 	public VehiculoEntidad build() {
-		return new VehiculoEntidad(placa, modelo, marca, color, precio);
+		return new VehiculoEntidad(id, placa, modelo, marca, color, precio);
 	}
 }

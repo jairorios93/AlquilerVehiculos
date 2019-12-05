@@ -22,22 +22,6 @@ public class UsuarioEntidadDataBuilder {
 		fechaNacimiento = Calendar.getInstance().getTime();
 	}
 
-	public UsuarioEntidad conCedula(Long cedula) {
-		return new UsuarioEntidad(cedula, nombres, apellidos, fechaNacimiento);
-	}
-
-	public UsuarioEntidad conNombres(String nombres) {
-		return new UsuarioEntidad(cedula, nombres, apellidos, fechaNacimiento);
-	}
-
-	public UsuarioEntidad conApellidos(String apellidos) {
-		return new UsuarioEntidad(cedula, nombres, apellidos, fechaNacimiento);
-	}
-
-	public UsuarioEntidad conFechaNacimiento(Date fechaNacimiento) {
-		return new UsuarioEntidad(cedula, nombres, apellidos, fechaNacimiento);
-	}
-
 	public UsuarioEntidad build() {
 		return new UsuarioEntidad(cedula, nombres, apellidos, fechaNacimiento);
 	}

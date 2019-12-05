@@ -4,6 +4,8 @@ import com.ceiba.alquilervehiculos.dominio.modelo.Vehiculo;
 
 public class VehiculoDataBuilder {
 
+	private Long id;
+
 	private String placa;
 
 	private String modelo;
@@ -20,29 +22,10 @@ public class VehiculoDataBuilder {
 		marca = "BMW";
 		color = "Gris";
 		precio = 45000;
-	}
-
-	public Vehiculo conPlaca(String placa) {
-		return new Vehiculo(placa, modelo, marca, color, precio);
-	}
-
-	public Vehiculo conModelo(String modelo) {
-		return new Vehiculo(placa, modelo, marca, color, precio);
-	}
-
-	public Vehiculo conMarca(String marca) {
-		return new Vehiculo(placa, modelo, marca, color, precio);
-	}
-
-	public Vehiculo conColor(String color) {
-		return new Vehiculo(placa, modelo, marca, color, precio);
-	}
-
-	public Vehiculo conPrecio(double precio) {
-		return new Vehiculo(placa, modelo, marca, color, precio);
+		id = 1L;
 	}
 
 	public Vehiculo build() {
-		return new Vehiculo(placa, modelo, marca, color, precio);
+		return new Vehiculo(id, placa, modelo, marca, color, precio);
 	}
 }

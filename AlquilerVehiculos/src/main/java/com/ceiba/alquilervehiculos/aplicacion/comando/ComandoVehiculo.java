@@ -17,7 +17,8 @@ public class ComandoVehiculo {
 	public ComandoVehiculo() {
 	}
 
-	public ComandoVehiculo(String placa, String modelo, String marca, String color, double precio) {
+	public ComandoVehiculo(Long id, String placa, String modelo, String marca, String color, double precio) {
+		this.id = id;
 		this.placa = placa;
 		this.modelo = modelo;
 		this.marca = marca;

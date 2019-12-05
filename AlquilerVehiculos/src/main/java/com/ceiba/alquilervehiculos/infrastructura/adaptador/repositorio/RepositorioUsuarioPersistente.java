@@ -8,7 +8,6 @@ import com.ceiba.alquilervehiculos.aplicacion.comando.ComandoUsuario;
 import com.ceiba.alquilervehiculos.dominio.modelo.Usuario;
 import com.ceiba.alquilervehiculos.dominio.puerto.repositorio.RepositorioUsuario;
 import com.ceiba.alquilervehiculos.infrastructura.UsuarioRepositorioJPA;
-import com.ceiba.alquilervehiculos.infrastructura.adaptador.builder.UsuarioBuilder;
 import com.ceiba.alquilervehiculos.infrastructura.entidades.UsuarioEntidad;
 
 @Repository
@@ -23,7 +22,9 @@ public class RepositorioUsuarioPersistente implements RepositorioUsuario {
 
 	@Override
 	public void registrarUsuario(Usuario usuario) {
-		usuarioRepositorioJPA.save(UsuarioBuilder.convertirAEntity(usuario));
+		UsuarioEntidad usuarioEntidad = modelMapper.map(usuario, UsuarioEntidad.class);
+		usuarioRepositorioJPA.save(usuarioEntidad);
+		usuarioRepositorioJPA.findAll();
 	}
 
 	@Override

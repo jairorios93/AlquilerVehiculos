@@ -4,6 +4,8 @@ import com.ceiba.alquilervehiculos.aplicacion.comando.ComandoVehiculo;
 
 public class ComandoVehiculoDataBuilder {
 
+	private Long id;
+
 	private String placa;
 
 	private String modelo;
@@ -20,13 +22,10 @@ public class ComandoVehiculoDataBuilder {
 		marca = "BMW";
 		color = "Gris";
 		precio = 45000;
-	}
-
-	public ComandoVehiculo conPlaca(String placa) {
-		return new ComandoVehiculo(placa, modelo, marca, color, precio);
+		id = 1L;
 	}
 
 	public ComandoVehiculo build() {
-		return new ComandoVehiculo(placa, modelo, marca, color, precio);
+		return new ComandoVehiculo(id, placa, modelo, marca, color, precio);
 	}
 }
