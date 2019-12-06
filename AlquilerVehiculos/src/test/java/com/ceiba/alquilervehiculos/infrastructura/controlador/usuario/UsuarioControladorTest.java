@@ -4,6 +4,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
@@ -60,5 +61,12 @@ public class UsuarioControladorTest {
 		mvc.perform(
 				get("/usuario/buscarUsuario/{CEDULA}", usuarioDTO.getCedula()).contentType(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isOk());
+	}
+
+	@Test
+	void buscarUsuarioNoEncontrado() throws Exception {
+		mvc.perform(
+				get("/usuario/buscarUsuario/{CEDULA}", 1L).contentType(MediaType.APPLICATION_JSON))
+				.andDo(print()).andExpect(content().string(""));
 	}
 }
