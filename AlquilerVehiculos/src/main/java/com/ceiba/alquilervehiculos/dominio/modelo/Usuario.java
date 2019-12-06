@@ -2,6 +2,7 @@ package com.ceiba.alquilervehiculos.dominio.modelo;
 
 import java.util.Date;
 
+@SuppressWarnings("unused")
 public class Usuario {
 
 	private Long cedula;

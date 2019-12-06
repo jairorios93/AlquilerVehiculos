@@ -1,5 +1,6 @@
 package com.ceiba.alquilervehiculos.dominio.modelo;
 
+@SuppressWarnings("unused")
 public class Vehiculo {
 
 	private Long id;
