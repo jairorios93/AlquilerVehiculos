@@ -36,11 +36,4 @@ public class UsuarioControladorTest {
 		assertDoesNotThrow(() -> controlador.registrarUsuario(usuario));
 	}
 
-	@Test
-	void buscarUsuario() throws Exception {
-		mvc.perform(
-				MockMvcRequestBuilders.get("/buscarUsuario/{CEDULA}", 1094935130).accept(MediaType.APPLICATION_JSON))
-				.andDo(print()).andExpect(status().isOk());
-
-	}
 }
