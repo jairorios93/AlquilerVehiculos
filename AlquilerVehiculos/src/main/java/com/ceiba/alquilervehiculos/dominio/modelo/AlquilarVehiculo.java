@@ -28,40 +28,4 @@ public class AlquilarVehiculo {
 		this.valor = valor;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
-	public Vehiculo getVehiculo() {
-		return vehiculo;
-	}
-
-	public void setVehiculo(Vehiculo vehiculo) {
-		this.vehiculo = vehiculo;
-	}
-
-	public Date getFechaInicio() {
-		return fechaInicio;
-	}
-
-	public Date getFechaFin() {
-		return fechaFin;
-	}
-
-	public boolean isEstado() {
-		return estado;
-	}
-
-	public double getValor() {
-		return valor;
-	}
-
 }

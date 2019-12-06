@@ -16,7 +16,6 @@ public class ComandoUsuario {
 	}
 
 	public ComandoUsuario(Long cedula, String nombres, String apellidos, Date fechaNacimiento) {
-		super();
 		this.cedula = cedula;
 		this.nombres = nombres;
 		this.apellidos = apellidos;
