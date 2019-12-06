@@ -1,39 +1,64 @@
 package com.ceiba.alquilervehiculos.infrastructura.controlador.usuario;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.mockito.Mockito.mock;
-
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.ceiba.alquilervehiculos.aplicacion.comando.ComandoUsuario;
-import com.ceiba.alquilervehiculos.aplicacion.manejadores.usuario.ManejadorBuscarUsuario;
-import com.ceiba.alquilervehiculos.aplicacion.manejadores.usuario.ManejadorCrearUsuario;
-import com.ceiba.alquilervehiculos.databuilder.ComandoUsuarioDataBuilder;
-import com.ceiba.alquilervehiculos.infrastructura.controladores.UsuarioControlador;
+import org.junit.Before;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.ceiba.alquilervehiculos.AlquilerVehiculosApplication;
+import com.ceiba.alquilervehiculos.aplicacion.comando.ComandoUsuario;
+import com.ceiba.alquilervehiculos.databuilder.ComandoUsuarioDataBuilder;
+import com.ceiba.alquilervehiculos.databuilder.UsuarioDTODataBuilder;
+import com.ceiba.alquilervehiculos.dominio.modelo.dto.UsuarioDTO;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = AlquilerVehiculosApplication.class)
+@AutoConfigureMockMvc
 public class UsuarioControladorTest {
 
-	private ManejadorCrearUsuario manejadorCrearUsuario = mock(ManejadorCrearUsuario.class);
-	private ManejadorBuscarUsuario manejadorBuscarUsuario = mock(ManejadorBuscarUsuario.class);
+	@Autowired
+	private WebApplicationContext webApplicationContext;
+
+	@Autowired
+	private ObjectMapper objectMapper;
 
 	@Autowired
 	private MockMvc mvc;
 
-	@Test
-	void registrarUsuario() {
-		ComandoUsuario usuario = new ComandoUsuarioDataBuilder().build();
-
-		UsuarioControlador controlador = new UsuarioControlador(manejadorCrearUsuario, manejadorBuscarUsuario);
-		controlador.registrarUsuario(usuario);
-
-		assertDoesNotThrow(() -> controlador.registrarUsuario(usuario));
+	@Before
+	public void setup() throws Exception {
+		this.mvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
 	}
 
+	@Test
+	void registrarUsuario() throws Exception {
+		ComandoUsuario comandoUsuario = new ComandoUsuarioDataBuilder().build();
+		mvc.perform(post("/usuario/registrarUsuario").contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(comandoUsuario))).andDo(print()).andExpect(status().isOk());
+	}
+
+	@Test
+	void buscarUsuario() throws Exception {
+		ComandoUsuario comandoUsuario = new ComandoUsuarioDataBuilder().build();
+		mvc.perform(post("/usuario/registrarUsuario").contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(comandoUsuario))).andDo(print()).andExpect(status().isOk());
+
+		UsuarioDTO usuarioDTO = new UsuarioDTODataBuilder().build();
+		mvc.perform(
+				get("/usuario/buscarUsuario/{CEDULA}", usuarioDTO.getCedula()).contentType(MediaType.APPLICATION_JSON))
+				.andDo(print()).andExpect(status().isOk());
+	}
 }

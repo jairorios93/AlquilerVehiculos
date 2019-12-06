@@ -4,8 +4,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
-import com.ceiba.alquilervehiculos.aplicacion.comando.ComandoUsuario;
 import com.ceiba.alquilervehiculos.dominio.modelo.Usuario;
+import com.ceiba.alquilervehiculos.dominio.modelo.dto.UsuarioDTO;
 import com.ceiba.alquilervehiculos.dominio.puerto.repositorio.RepositorioUsuario;
 import com.ceiba.alquilervehiculos.infrastructura.UsuarioRepositorioJPA;
 import com.ceiba.alquilervehiculos.infrastructura.entidades.UsuarioEntidad;
@@ -24,13 +24,12 @@ public class RepositorioUsuarioPersistente implements RepositorioUsuario {
 	public void registrarUsuario(Usuario usuario) {
 		UsuarioEntidad usuarioEntidad = modelMapper.map(usuario, UsuarioEntidad.class);
 		usuarioRepositorioJPA.save(usuarioEntidad);
-		usuarioRepositorioJPA.findAll();
 	}
 
 	@Override
-	public ComandoUsuario buscarUsuario(Long cedula) {
+	public UsuarioDTO buscarUsuario(Long cedula) {
 		Optional<UsuarioEntidad> usuarioEntidad = usuarioRepositorioJPA.findById(cedula);
-		return usuarioEntidad.isPresent() ? modelMapper.map(usuarioEntidad.get(), ComandoUsuario.class) : null;
+		return usuarioEntidad.isPresent() ? modelMapper.map(usuarioEntidad.get(), UsuarioDTO.class) : null;
 	}
 
 }

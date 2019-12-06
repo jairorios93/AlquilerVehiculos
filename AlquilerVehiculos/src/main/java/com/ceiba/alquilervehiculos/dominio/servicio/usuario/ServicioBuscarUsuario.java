@@ -1,6 +1,6 @@
 package com.ceiba.alquilervehiculos.dominio.servicio.usuario;
 
-import com.ceiba.alquilervehiculos.aplicacion.comando.ComandoUsuario;
+import com.ceiba.alquilervehiculos.dominio.modelo.dto.UsuarioDTO;
 import com.ceiba.alquilervehiculos.dominio.puerto.repositorio.RepositorioUsuario;
 
 public class ServicioBuscarUsuario {
@@ -11,7 +11,7 @@ public class ServicioBuscarUsuario {
 		this.repositorioUsuario = repositorioUsuario;
 	}
 	
-	public ComandoUsuario buscarUsuario(Long cedula) {
+	public UsuarioDTO buscarUsuario(Long cedula) {
 		return repositorioUsuario.buscarUsuario(cedula);
 	}
 }

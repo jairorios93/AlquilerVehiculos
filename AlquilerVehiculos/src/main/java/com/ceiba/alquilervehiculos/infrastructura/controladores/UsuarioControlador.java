@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ceiba.alquilervehiculos.aplicacion.comando.ComandoUsuario;
 import com.ceiba.alquilervehiculos.aplicacion.manejadores.usuario.ManejadorBuscarUsuario;
 import com.ceiba.alquilervehiculos.aplicacion.manejadores.usuario.ManejadorCrearUsuario;
+import com.ceiba.alquilervehiculos.dominio.modelo.dto.UsuarioDTO;
 
 @RestController
 @RequestMapping("/usuario")
@@ -30,7 +31,7 @@ public class UsuarioControlador {
 	}
 
 	@GetMapping("/buscarUsuario/{CEDULA}")
-	public ComandoUsuario buscarUsuario(@PathVariable(name = "CEDULA") Long cedula) {
+	public UsuarioDTO buscarUsuario(@PathVariable(name = "CEDULA") Long cedula) {
 		return this.manejadorBuscarUsuario.buscarUsuario(cedula);
 	}
 

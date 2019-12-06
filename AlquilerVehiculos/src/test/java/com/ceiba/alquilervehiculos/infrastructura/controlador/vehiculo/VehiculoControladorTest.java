@@ -1,33 +1,64 @@
 package com.ceiba.alquilervehiculos.infrastructura.controlador.vehiculo;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.mockito.Mockito.mock;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
+import com.ceiba.alquilervehiculos.AlquilerVehiculosApplication;
 import com.ceiba.alquilervehiculos.aplicacion.comando.ComandoVehiculo;
-import com.ceiba.alquilervehiculos.aplicacion.manejadores.vehiculo.ManejadorBuscarVehiculo;
-import com.ceiba.alquilervehiculos.aplicacion.manejadores.vehiculo.ManejadorCrearVehiculo;
 import com.ceiba.alquilervehiculos.databuilder.ComandoVehiculoDataBuilder;
-import com.ceiba.alquilervehiculos.infrastructura.controladores.VehiculoControlador;
+import com.ceiba.alquilervehiculos.databuilder.VehiculoDTODataBuilder;
+import com.ceiba.alquilervehiculos.dominio.modelo.dto.VehiculoDTO;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = AlquilerVehiculosApplication.class)
+@AutoConfigureMockMvc
 public class VehiculoControladorTest {
 
-	private ManejadorCrearVehiculo manejadorCrearVehiculo = mock(ManejadorCrearVehiculo.class);
-	private ManejadorBuscarVehiculo ManejadorBuscarVehiculo = mock(ManejadorBuscarVehiculo.class);
+	@Autowired
+	private WebApplicationContext webApplicationContext;
 
-	@Test
-	void registrarVehiculo() {
-		ComandoVehiculo vehiculo = new ComandoVehiculoDataBuilder().build();
+	@Autowired
+	private ObjectMapper objectMapper;
 
-		VehiculoControlador controlador = new VehiculoControlador(manejadorCrearVehiculo, ManejadorBuscarVehiculo);
+	@Autowired
+	private MockMvc mvc;
 
-		assertDoesNotThrow(() -> controlador.registrarVehiculo(vehiculo));
+	@Before
+	public void setup() throws Exception {
+		this.mvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
 	}
 
 	@Test
-	void buscarVehiculo() {
-		VehiculoControlador controlador = new VehiculoControlador(manejadorCrearVehiculo, ManejadorBuscarVehiculo);
-		assertDoesNotThrow(() -> controlador.buscarVehiculo("ASF122"));
+	void registrarVehiculo() throws Exception {
+		ComandoVehiculo comandoVehiculo = new ComandoVehiculoDataBuilder().build();
+		mvc.perform(post("/vehiculo/registrarVehiculo").contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(comandoVehiculo))).andDo(print()).andExpect(status().isOk());
+	}
+
+	@Test
+	void buscarVehiculo() throws Exception {
+		ComandoVehiculo comandoVehiculo = new ComandoVehiculoDataBuilder().build();
+		mvc.perform(post("/vehiculo/registrarVehiculo").contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(comandoVehiculo))).andDo(print()).andExpect(status().isOk());
+
+		VehiculoDTO vehiculoDTO = new VehiculoDTODataBuilder().build();
+		mvc.perform(
+				get("/vehiculo/buscarVehiculo/{PLACA}", vehiculoDTO.getPlaca()).contentType(MediaType.APPLICATION_JSON))
+				.andDo(print()).andExpect(status().isOk());
 	}
 }
