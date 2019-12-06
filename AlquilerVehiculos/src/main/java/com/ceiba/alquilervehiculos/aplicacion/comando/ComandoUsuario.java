@@ -15,20 +15,20 @@ public class ComandoUsuario {
 	public ComandoUsuario() {
 	}
 
-	public Long getCedula() {
-		return cedula;
-	}
-
-	public void setCedula(Long cedula) {
-		this.cedula = cedula;
-	}
-
 	public ComandoUsuario(Long cedula, String nombres, String apellidos, Date fechaNacimiento) {
 		super();
 		this.cedula = cedula;
 		this.nombres = nombres;
 		this.apellidos = apellidos;
 		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public Long getCedula() {
+		return cedula;
+	}
+
+	public void setCedula(Long cedula) {
+		this.cedula = cedula;
 	}
 
 	public String getNombres() {

@@ -27,9 +27,7 @@ public class RepositorioVehiculoPersistente implements RepositorioVehiculo {
 
 	@Override
 	public ComandoVehiculo buscarVehiculo(String placa) {
-		VehiculoEntidad entidad = vehiculoRepositorioJPA.buscarVehiculo(placa);
-		ComandoVehiculo comandoVehiculo = modelMapper.map(entidad, ComandoVehiculo.class);
-		return comandoVehiculo;
+		return modelMapper.map(vehiculoRepositorioJPA.buscarVehiculo(placa), ComandoVehiculo.class);
 	}
 
 }
