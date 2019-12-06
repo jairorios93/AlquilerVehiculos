@@ -12,6 +12,9 @@ public class Usuario {
 
 	private Date fechaNacimiento;
 
+	public Usuario() {
+	}
+
 	public Usuario(Long cedula, String nombres, String apellidos, Date fechaNacimiento) {
 		this.cedula = cedula;
 		this.nombres = nombres;
@@ -23,16 +26,32 @@ public class Usuario {
 		return cedula;
 	}
 
+	public void setCedula(Long cedula) {
+		this.cedula = cedula;
+	}
+
 	public String getNombres() {
 		return nombres;
+	}
+
+	public void setNombres(String nombres) {
+		this.nombres = nombres;
 	}
 
 	public String getApellidos() {
 		return apellidos;
 	}
 
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
 	public Date getFechaNacimiento() {
 		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 
 }

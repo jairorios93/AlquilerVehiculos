@@ -16,6 +16,9 @@ public class AlquilarVehiculo {
 
 	private double valor;
 
+	public AlquilarVehiculo() {
+	}
+
 	public AlquilarVehiculo(Usuario usuario, Vehiculo vehiculo, Date fechaInicio, Date fechaFin, boolean estado,
 			double valor) {
 		this.usuario = usuario;
@@ -30,24 +33,48 @@ public class AlquilarVehiculo {
 		return usuario;
 	}
 
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	public Vehiculo getVehiculo() {
 		return vehiculo;
+	}
+
+	public void setVehiculo(Vehiculo vehiculo) {
+		this.vehiculo = vehiculo;
 	}
 
 	public Date getFechaInicio() {
 		return fechaInicio;
 	}
 
+	public void setFechaInicio(Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+
 	public Date getFechaFin() {
 		return fechaFin;
+	}
+
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
 	}
 
 	public boolean isEstado() {
 		return estado;
 	}
 
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
+
 	public double getValor() {
 		return valor;
+	}
+
+	public void setValor(double valor) {
+		this.valor = valor;
 	}
 
 }

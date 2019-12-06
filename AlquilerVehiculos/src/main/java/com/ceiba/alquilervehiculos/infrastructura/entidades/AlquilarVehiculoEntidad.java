@@ -63,20 +63,40 @@ public class AlquilarVehiculoEntidad {
 		this.id = id;
 	}
 
+	public UsuarioEntidad getUsuario() {
+		return usuario;
+	}
+
 	public void setUsuario(UsuarioEntidad usuario) {
 		this.usuario = usuario;
+	}
+
+	public VehiculoEntidad getVehiculo() {
+		return vehiculo;
 	}
 
 	public void setVehiculo(VehiculoEntidad vehiculo) {
 		this.vehiculo = vehiculo;
 	}
 
+	public Date getFechaInicio() {
+		return fechaInicio;
+	}
+
 	public void setFechaInicio(Date fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
 
+	public Date getFechaFin() {
+		return fechaFin;
+	}
+
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
+	}
+
+	public boolean isEstado() {
+		return estado;
 	}
 
 	public void setEstado(boolean estado) {
