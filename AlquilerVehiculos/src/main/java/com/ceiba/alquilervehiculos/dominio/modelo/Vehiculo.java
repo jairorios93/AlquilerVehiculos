@@ -1,6 +1,5 @@
 package com.ceiba.alquilervehiculos.dominio.modelo;
 
-@SuppressWarnings("unused")
 public class Vehiculo {
 
 	private Long id;
@@ -15,9 +14,6 @@ public class Vehiculo {
 
 	private double precio;
 
-	public Vehiculo() {
-	}
-
 	public Vehiculo(Long id, String placa, String modelo, String marca, String color, double precio) {
 		this.id = id;
 		this.placa = placa;
@@ -25,6 +21,30 @@ public class Vehiculo {
 		this.marca = marca;
 		this.color = color;
 		this.precio = precio;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getPlaca() {
+		return placa;
+	}
+
+	public String getModelo() {
+		return modelo;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public double getPrecio() {
+		return precio;
 	}
 
 }

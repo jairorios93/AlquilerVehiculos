@@ -2,7 +2,6 @@ package com.ceiba.alquilervehiculos.dominio.modelo;
 
 import java.util.Date;
 
-@SuppressWarnings("unused")
 public class AlquilarVehiculo {
 
 	private Usuario usuario;
@@ -25,6 +24,30 @@ public class AlquilarVehiculo {
 		this.fechaFin = fechaFin;
 		this.estado = estado;
 		this.valor = valor;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public Vehiculo getVehiculo() {
+		return vehiculo;
+	}
+
+	public Date getFechaInicio() {
+		return fechaInicio;
+	}
+
+	public Date getFechaFin() {
+		return fechaFin;
+	}
+
+	public boolean isEstado() {
+		return estado;
+	}
+
+	public double getValor() {
+		return valor;
 	}
 
 }

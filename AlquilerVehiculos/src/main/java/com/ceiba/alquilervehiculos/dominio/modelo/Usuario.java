@@ -2,7 +2,6 @@ package com.ceiba.alquilervehiculos.dominio.modelo;
 
 import java.util.Date;
 
-@SuppressWarnings("unused")
 public class Usuario {
 
 	private Long cedula;
@@ -18,6 +17,22 @@ public class Usuario {
 		this.nombres = nombres;
 		this.apellidos = apellidos;
 		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public Long getCedula() {
+		return cedula;
+	}
+
+	public String getNombres() {
+		return nombres;
+	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
 	}
 
 }
