@@ -4,6 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.mockito.Mockito.mock;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.ceiba.alquilervehiculos.aplicacion.comando.ComandoUsuario;
 import com.ceiba.alquilervehiculos.aplicacion.manejadores.usuario.ManejadorBuscarUsuario;
@@ -16,6 +23,9 @@ public class UsuarioControladorTest {
 	private ManejadorCrearUsuario manejadorCrearUsuario = mock(ManejadorCrearUsuario.class);
 	private ManejadorBuscarUsuario manejadorBuscarUsuario = mock(ManejadorBuscarUsuario.class);
 
+	@Autowired
+	private MockMvc mvc;
+
 	@Test
 	void registrarUsuario() {
 		ComandoUsuario usuario = new ComandoUsuarioDataBuilder().build();
@@ -27,8 +37,10 @@ public class UsuarioControladorTest {
 	}
 
 	@Test
-	void buscarUsuario() {
-		UsuarioControlador controlador = new UsuarioControlador(manejadorCrearUsuario, manejadorBuscarUsuario);
-		assertDoesNotThrow(() -> controlador.buscarUsuario(1L));
+	void buscarUsuario() throws Exception {
+		mvc.perform(
+				MockMvcRequestBuilders.get("/buscarUsuario/{CEDULA}", 1094935130).accept(MediaType.APPLICATION_JSON))
+				.andDo(print()).andExpect(status().isOk());
+
 	}
 }

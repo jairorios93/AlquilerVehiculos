@@ -1,6 +1,6 @@
 package com.ceiba.alquilervehiculos.dominio.servicio.vehiculo;
 
-import com.ceiba.alquilervehiculos.aplicacion.comando.ComandoVehiculo;
+import com.ceiba.alquilervehiculos.dominio.modelo.dto.VehiculoDTO;
 import com.ceiba.alquilervehiculos.dominio.puerto.repositorio.RepositorioVehiculo;
 
 public class ServicioBuscarVehiculo {
@@ -11,7 +11,7 @@ public class ServicioBuscarVehiculo {
 		this.repositorioVehiculo = repositorioVehiculo;
 	}
 
-	public ComandoVehiculo buscarVehiculo(String placa) {
+	public VehiculoDTO buscarVehiculo(String placa) {
 		return repositorioVehiculo.buscarVehiculo(placa);
 	}
 }

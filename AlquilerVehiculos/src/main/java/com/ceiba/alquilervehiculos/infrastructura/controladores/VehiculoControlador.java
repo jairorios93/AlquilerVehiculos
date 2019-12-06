@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ceiba.alquilervehiculos.aplicacion.comando.ComandoVehiculo;
 import com.ceiba.alquilervehiculos.aplicacion.manejadores.vehiculo.ManejadorBuscarVehiculo;
 import com.ceiba.alquilervehiculos.aplicacion.manejadores.vehiculo.ManejadorCrearVehiculo;
+import com.ceiba.alquilervehiculos.dominio.modelo.dto.VehiculoDTO;
 
 @RestController
 @RequestMapping(value = "/vehiculo")
@@ -30,7 +31,7 @@ public class VehiculoControlador {
 	}
 
 	@GetMapping("/buscarVehiculo/{PLACA}")
-	public ComandoVehiculo buscarVehiculo(@PathVariable(name = "PLACA") String placa) {
+	public VehiculoDTO buscarVehiculo(@PathVariable(name = "PLACA") String placa) {
 		return this.manejadorBuscarVehiculo.buscarVehiculo(placa);
 	}
 }
