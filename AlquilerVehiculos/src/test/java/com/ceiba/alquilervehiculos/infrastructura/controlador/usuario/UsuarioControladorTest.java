@@ -65,8 +65,7 @@ public class UsuarioControladorTest {
 
 	@Test
 	void buscarUsuarioNoEncontrado() throws Exception {
-		mvc.perform(
-				get("/usuario/buscarUsuario/{CEDULA}", 1L).contentType(MediaType.APPLICATION_JSON))
-				.andDo(print()).andExpect(content().string(""));
+		mvc.perform(get("/usuario/buscarUsuario/{CEDULA}", 1L).contentType(MediaType.APPLICATION_JSON)).andDo(print())
+				.andExpect(content().string(""));
 	}
 }
