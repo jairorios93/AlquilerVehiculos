@@ -27,7 +27,11 @@ public class RepositorioVehiculoPersistente implements RepositorioVehiculo {
 
 	@Override
 	public VehiculoDTO buscarVehiculo(String placa) {
-		return modelMapper.map(vehiculoRepositorioJPA.buscarVehiculo(placa), VehiculoDTO.class);
+		VehiculoEntidad vehiculoEntidad = vehiculoRepositorioJPA.buscarVehiculo(placa);
+		if (vehiculoEntidad != null) {
+			return modelMapper.map(vehiculoEntidad, VehiculoDTO.class);
+		} else {
+			return null;
+		}
 	}
-
 }

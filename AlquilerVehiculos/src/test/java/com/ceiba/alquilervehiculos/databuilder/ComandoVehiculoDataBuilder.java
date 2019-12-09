@@ -28,4 +28,9 @@ public class ComandoVehiculoDataBuilder {
 	public ComandoVehiculo build() {
 		return new ComandoVehiculo(id, placa, modelo, marca, color, precio);
 	}
+	
+	
+	public ComandoVehiculo conPlaca(String placa) {
+		return new ComandoVehiculo(id, placa, modelo, marca, color, precio);
+	}
 }

@@ -1,9 +1,12 @@
 package com.ceiba.alquilervehiculos.infrastructura.adaptador.repositorio;
 
+import java.util.Date;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Repository;
 
 import com.ceiba.alquilervehiculos.dominio.modelo.AlquilarVehiculo;
+import com.ceiba.alquilervehiculos.dominio.modelo.dto.AlquilarVehiculoDTO;
 import com.ceiba.alquilervehiculos.dominio.puerto.repositorio.RepositorioAlquilarVehiculo;
 import com.ceiba.alquilervehiculos.infrastructura.AlquilarVehiculoRepositorioJPA;
 import com.ceiba.alquilervehiculos.infrastructura.entidades.AlquilarVehiculoEntidad;
@@ -24,4 +27,20 @@ public class RepositorioAlquilarVehiculoPersistente implements RepositorioAlquil
 				AlquilarVehiculoEntidad.class);
 		alquilarVehiculoRepositorioJPA.save(alquilarVehiculoEntidad);
 	}
+
+	@Override
+	public AlquilarVehiculoDTO buscarAlquilarVehiculo(String placa) {
+		AlquilarVehiculoEntidad alquilarVehiculoEntidad = alquilarVehiculoRepositorioJPA.buscarAlquiler(placa);
+		if (alquilarVehiculoEntidad != null) {
+			return modelMapper.map(alquilarVehiculoEntidad, AlquilarVehiculoDTO.class);
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public void devolverVehiculo(Long id, boolean estado, Date fecha, double valor) {
+		alquilarVehiculoRepositorioJPA.devolverVehiculo(id, estado, fecha, valor);
+	}
+
 }

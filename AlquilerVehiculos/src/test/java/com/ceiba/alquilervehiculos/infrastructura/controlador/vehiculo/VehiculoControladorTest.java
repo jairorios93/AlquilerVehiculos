@@ -5,6 +5,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import javax.transaction.Transactional;
+
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -27,6 +29,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = AlquilerVehiculosApplication.class)
 @AutoConfigureMockMvc
+@Transactional
 public class VehiculoControladorTest {
 
 	@Autowired
@@ -45,14 +48,14 @@ public class VehiculoControladorTest {
 
 	@Test
 	void registrarVehiculo() throws Exception {
-		ComandoVehiculo comandoVehiculo = new ComandoVehiculoDataBuilder().build();
+		ComandoVehiculo comandoVehiculo = new ComandoVehiculoDataBuilder().conPlaca("ASD87");
 		mvc.perform(post("/vehiculo/registrarVehiculo").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(comandoVehiculo))).andDo(print()).andExpect(status().isOk());
 	}
 
 	@Test
 	void buscarVehiculo() throws Exception {
-		ComandoVehiculo comandoVehiculo = new ComandoVehiculoDataBuilder().build();
+		ComandoVehiculo comandoVehiculo = new ComandoVehiculoDataBuilder().conPlaca("ASD88");
 		mvc.perform(post("/vehiculo/registrarVehiculo").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(comandoVehiculo))).andDo(print()).andExpect(status().isOk());
 

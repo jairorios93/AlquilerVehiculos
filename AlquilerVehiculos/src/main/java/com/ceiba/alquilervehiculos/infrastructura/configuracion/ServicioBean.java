@@ -7,6 +7,7 @@ import com.ceiba.alquilervehiculos.dominio.puerto.repositorio.RepositorioAlquila
 import com.ceiba.alquilervehiculos.dominio.puerto.repositorio.RepositorioUsuario;
 import com.ceiba.alquilervehiculos.dominio.puerto.repositorio.RepositorioVehiculo;
 import com.ceiba.alquilervehiculos.dominio.servicio.alquiler.ServicioAlquilarVehiculo;
+import com.ceiba.alquilervehiculos.dominio.servicio.alquiler.ServicioDevolverVehiculo;
 import com.ceiba.alquilervehiculos.dominio.servicio.usuario.ServicioBuscarUsuario;
 import com.ceiba.alquilervehiculos.dominio.servicio.usuario.ServicioCrearUsuario;
 import com.ceiba.alquilervehiculos.dominio.servicio.vehiculo.ServicioBuscarVehiculo;
@@ -41,4 +42,9 @@ public class ServicioBean {
 		return new ServicioAlquilarVehiculo(repositorioAlquilarVehiculo);
 	}
 
+	@Bean
+	public ServicioDevolverVehiculo crearServicioDevolverVehiculo(
+			RepositorioAlquilarVehiculo repositorioAlquilarVehiculo) {
+		return new ServicioDevolverVehiculo(repositorioAlquilarVehiculo);
+	}
 }
