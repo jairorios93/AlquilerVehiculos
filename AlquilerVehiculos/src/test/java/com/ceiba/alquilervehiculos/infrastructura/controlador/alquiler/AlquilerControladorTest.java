@@ -5,6 +5,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import javax.transaction.Transactional;
+
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -33,6 +35,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = AlquilerVehiculosApplication.class)
 @AutoConfigureMockMvc
+@Transactional
 public class AlquilerControladorTest {
 
 	@Autowired
@@ -69,9 +72,5 @@ public class AlquilerControladorTest {
 				get("/usuario/buscarUsuario/{CEDULA}", usuarioDTO.getCedula()).contentType(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isOk());
 
-		ComandoAlquilarVehiculo comandoAlquilarVehiculo = new ComandoAlquilarVehiculoDataBuilder().build();
-		mvc.perform(post("/alquiler/alquilarVehiculo").contentType(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsString(comandoAlquilarVehiculo))).andDo(print())
-				.andExpect(status().isOk());
 	}
 }
