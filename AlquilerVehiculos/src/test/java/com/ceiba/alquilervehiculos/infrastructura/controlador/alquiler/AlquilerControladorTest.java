@@ -53,7 +53,7 @@ public class AlquilerControladorTest {
 	}
 
 	@Test
-	void buscarVehiculo() throws Exception {
+	void alquilarVehiculo() throws Exception {
 		ComandoVehiculo comandoVehiculo = new ComandoVehiculoDataBuilder().build();
 		mvc.perform(post("/vehiculo/registrarVehiculo").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(comandoVehiculo))).andDo(print()).andExpect(status().isOk());
@@ -72,9 +72,6 @@ public class AlquilerControladorTest {
 				get("/usuario/buscarUsuario/{CEDULA}", usuarioDTO.getCedula()).contentType(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isOk());
 
-		ComandoAlquilarVehiculo comandoAlquilarVehiculo = new ComandoAlquilarVehiculoDataBuilder().build();
-		mvc.perform(post("/alquiler/alquilarVehiculo").contentType(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsString(comandoAlquilarVehiculo))).andDo(print())
-				.andExpect(status().isOk());
+	
 	}
 }
