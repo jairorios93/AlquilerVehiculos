@@ -1,6 +1,7 @@
 package com.ceiba.alquilervehiculos.dominio.servicio.alquiler;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 import com.ceiba.alquilervehiculos.dominio.excepciones.ExcepcionNegocio;
@@ -26,19 +27,13 @@ public class ServicioAlquilarVehiculo {
 		} else {
 			alquilarVehiculo.setEstado(true);
 
-			GregorianCalendar fechaNacimiento = new GregorianCalendar();
-			fechaNacimiento.setTime(alquilarVehiculo.getUsuario().getFechaNacimiento());
-			fechaNacimiento.add(Calendar.DATE, 1);
+			GregorianCalendar fechaNacimiento = fechaAjustada(alquilarVehiculo.getUsuario().getFechaNacimiento());
 			alquilarVehiculo.getUsuario().setFechaNacimiento(fechaNacimiento.getTime());
 
-			GregorianCalendar fechaPrestamo = new GregorianCalendar();
-			fechaPrestamo.setTime(alquilarVehiculo.getFechaInicio());
-			fechaPrestamo.add(Calendar.DATE, 1);
+			GregorianCalendar fechaPrestamo = fechaAjustada(alquilarVehiculo.getFechaInicio());
 			alquilarVehiculo.setFechaInicio(fechaPrestamo.getTime());
 
-			GregorianCalendar fechaDevolucion = new GregorianCalendar();
-			fechaDevolucion.setTime(alquilarVehiculo.getFechaFin());
-			fechaDevolucion.add(Calendar.DATE, 1);
+			GregorianCalendar fechaDevolucion = fechaAjustada(alquilarVehiculo.getFechaFin());
 			alquilarVehiculo.setFechaFin(fechaDevolucion.getTime());
 
 			if (fechaNacimiento.get(Calendar.MONTH) == fechaPrestamo.get(Calendar.MONTH)
@@ -51,5 +46,12 @@ public class ServicioAlquilarVehiculo {
 			}
 			repositorioAlquilarVehiculo.alquilarVehiculo(alquilarVehiculo);
 		}
+	}
+	
+	public GregorianCalendar fechaAjustada(Date fechaOriginal) {
+		GregorianCalendar fechaAjustada = new GregorianCalendar();
+		fechaAjustada.setTime(fechaOriginal);
+		fechaAjustada.add(Calendar.DATE, 1);
+		return fechaAjustada;
 	}
 }

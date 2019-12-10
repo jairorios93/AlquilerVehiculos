@@ -24,6 +24,7 @@ public class RepositorioUsuarioPersistente implements RepositorioUsuario {
 	public void registrarUsuario(Usuario usuario) {
 		UsuarioEntidad usuarioEntidad = modelMapper.map(usuario, UsuarioEntidad.class);
 		usuarioRepositorioJPA.save(usuarioEntidad);
+		usuarioRepositorioJPA.findAll().size();
 	}
 
 	@Override
