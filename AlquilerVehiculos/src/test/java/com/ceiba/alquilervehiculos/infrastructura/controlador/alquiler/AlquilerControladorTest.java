@@ -77,8 +77,6 @@ public class AlquilerControladorTest {
 				.content(objectMapper.writeValueAsString(comandoAlquilarVehiculo))).andDo(print())
 				.andExpect(status().isOk());
 
-		mvc.perform(get("/alquiler/devolverVehiculo/{PLACA}", comandoAlquilarVehiculo.getVehiculo().getPlaca())
-				.contentType(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk());
 	}
 
 }
