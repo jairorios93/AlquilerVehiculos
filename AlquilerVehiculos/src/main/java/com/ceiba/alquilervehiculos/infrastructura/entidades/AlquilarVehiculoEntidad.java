@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 public class AlquilarVehiculoEntidad {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
 
