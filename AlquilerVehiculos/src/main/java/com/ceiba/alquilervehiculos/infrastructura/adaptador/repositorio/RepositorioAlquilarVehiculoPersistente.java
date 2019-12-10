@@ -26,7 +26,6 @@ public class RepositorioAlquilarVehiculoPersistente implements RepositorioAlquil
 		AlquilarVehiculoEntidad alquilarVehiculoEntidad = modelMapper.map(alquilarVehiculo,
 				AlquilarVehiculoEntidad.class);
 		alquilarVehiculoRepositorioJPA.save(alquilarVehiculoEntidad);
-		alquilarVehiculoRepositorioJPA.findAll();
 	}
 
 	@Override

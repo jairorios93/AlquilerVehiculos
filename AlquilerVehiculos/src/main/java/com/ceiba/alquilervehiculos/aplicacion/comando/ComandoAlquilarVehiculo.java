@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class ComandoAlquilarVehiculo {
 
+	private Long id;
+
 	private ComandoUsuario usuario;
 
 	private ComandoVehiculo vehiculo;
@@ -19,14 +21,23 @@ public class ComandoAlquilarVehiculo {
 	public ComandoAlquilarVehiculo() {
 	}
 
-	public ComandoAlquilarVehiculo(ComandoUsuario usuario, ComandoVehiculo vehiculo, Date fechaInicio, Date fechaFin,
-			boolean estado, double valor) {
+	public ComandoAlquilarVehiculo(Long id, ComandoUsuario usuario, ComandoVehiculo vehiculo, Date fechaInicio,
+			Date fechaFin, boolean estado, double valor) {
+		this.id = id;
 		this.usuario = usuario;
 		this.vehiculo = vehiculo;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
 		this.estado = estado;
 		this.valor = valor;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public ComandoUsuario getUsuario() {

@@ -9,6 +9,8 @@ import com.ceiba.alquilervehiculos.aplicacion.comando.ComandoVehiculo;
 
 public class ComandoAlquilarVehiculoDataBuilder {
 
+	private Long id;
+
 	private ComandoUsuario usuario;
 
 	private ComandoVehiculo vehiculo;
@@ -28,10 +30,11 @@ public class ComandoAlquilarVehiculoDataBuilder {
 		fechaFin = Calendar.getInstance().getTime();
 		estado = true;
 		valor = 1050000;
+		id = 1L;
 	}
 
 	public ComandoAlquilarVehiculo build() {
-		return new ComandoAlquilarVehiculo(usuario, vehiculo, fechaInicio, fechaFin, estado, valor);
+		return new ComandoAlquilarVehiculo(id, usuario, vehiculo, fechaInicio, fechaFin, estado, valor);
 	}
 
 }

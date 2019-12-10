@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class AlquilarVehiculo {
 
+	private Long id;
+
 	private Usuario usuario;
 
 	private Vehiculo vehiculo;
@@ -19,14 +21,23 @@ public class AlquilarVehiculo {
 	public AlquilarVehiculo() {
 	}
 
-	public AlquilarVehiculo(Usuario usuario, Vehiculo vehiculo, Date fechaInicio, Date fechaFin, boolean estado,
-			double valor) {
+	public AlquilarVehiculo(Long id, Usuario usuario, Vehiculo vehiculo, Date fechaInicio, Date fechaFin,
+			boolean estado, double valor) {
+		this.id = id;
 		this.usuario = usuario;
 		this.vehiculo = vehiculo;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
 		this.estado = estado;
 		this.valor = valor;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Usuario getUsuario() {

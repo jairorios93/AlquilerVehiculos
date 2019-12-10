@@ -9,6 +9,8 @@ import com.ceiba.alquilervehiculos.dominio.modelo.Vehiculo;
 
 public class AlquilarVehiculoDataBuilder {
 
+	private Long id;
+
 	private Usuario usuario;
 
 	private Vehiculo vehiculo;
@@ -28,9 +30,10 @@ public class AlquilarVehiculoDataBuilder {
 		fechaFin = Calendar.getInstance().getTime();
 		estado = true;
 		valor = 1050000;
+		id = 1L;
 	}
 
 	public AlquilarVehiculo build() {
-		return new AlquilarVehiculo(usuario, vehiculo, fechaInicio, fechaFin, estado, valor);
+		return new AlquilarVehiculo(id, usuario, vehiculo, fechaInicio, fechaFin, estado, valor);
 	}
 }

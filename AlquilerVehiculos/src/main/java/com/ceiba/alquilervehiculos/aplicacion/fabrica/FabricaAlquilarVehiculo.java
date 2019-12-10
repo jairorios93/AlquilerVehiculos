@@ -14,7 +14,8 @@ public class FabricaAlquilarVehiculo {
 	private ModelMapper modelMapper = new ModelMapper();
 
 	public AlquilarVehiculo crearAlquiler(ComandoAlquilarVehiculo comandoAlquilarVehiculo) {
-		return new AlquilarVehiculo(modelMapper.map(comandoAlquilarVehiculo.getUsuario(), Usuario.class),
+		return new AlquilarVehiculo(comandoAlquilarVehiculo.getId(),
+				modelMapper.map(comandoAlquilarVehiculo.getUsuario(), Usuario.class),
 				modelMapper.map(comandoAlquilarVehiculo.getVehiculo(), Vehiculo.class),
 				comandoAlquilarVehiculo.getFechaInicio(), comandoAlquilarVehiculo.getFechaFin(),
 				comandoAlquilarVehiculo.isEstado(), comandoAlquilarVehiculo.getValor());

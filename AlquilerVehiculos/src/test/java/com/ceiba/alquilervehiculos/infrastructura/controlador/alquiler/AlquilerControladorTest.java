@@ -72,6 +72,11 @@ public class AlquilerControladorTest {
 				get("/usuario/buscarUsuario/{CEDULA}", usuarioDTO.getCedula()).contentType(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isOk());
 
+		ComandoAlquilarVehiculo comandoAlquilarVehiculo = new ComandoAlquilarVehiculoDataBuilder().build();
+		mvc.perform(post("/alquiler/alquilarVehiculo").contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(comandoAlquilarVehiculo))).andDo(print())
+				.andExpect(status().isOk());
+
 		
 	}
 
