@@ -28,19 +28,20 @@ public class ComandoAlquilarVehiculoDataBuilder {
 		usuario = new ComandoUsuarioDataBuilder().build();
 		vehiculo = new ComandoVehiculoDataBuilder().build();
 		fechaInicio = Calendar.getInstance().getTime();
-		
-		GregorianCalendar fechaAjustada = new GregorianCalendar();
-		fechaAjustada.setTime(fechaInicio);
-		fechaAjustada.add(Calendar.DATE, 1);
-		fechaFin = fechaAjustada.getTime();
-		
+		fechaFin = Calendar.getInstance().getTime();
 		estado = true;
 		valor = 1050000;
 		id = 1L;
 	}
-
+	
+	public ComandoAlquilarVehiculo conVehiculoYFecha(ComandoVehiculo vehiculo, int dias) {
+		GregorianCalendar fechaAjustada = new GregorianCalendar();
+		fechaAjustada.setTime(fechaInicio);
+		fechaAjustada.add(Calendar.DATE, dias);
+		return new ComandoAlquilarVehiculo(id, usuario, vehiculo, fechaInicio, fechaFin, estado, valor);
+	}
+	
 	public ComandoAlquilarVehiculo build() {
 		return new ComandoAlquilarVehiculo(id, usuario, vehiculo, fechaInicio, fechaFin, estado, valor);
 	}
-
 }
