@@ -4,8 +4,6 @@ import com.ceiba.alquilervehiculos.dominio.modelo.Vehiculo;
 
 public class VehiculoDataBuilder {
 
-	private Long id;
-
 	private String placa;
 
 	private String modelo;
@@ -22,7 +20,6 @@ public class VehiculoDataBuilder {
 		marca = "BMW";
 		color = "Gris";
 		precio = 45000;
-		id = 1L;
 	}
 
 	public Vehiculo build() {
