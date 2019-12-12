@@ -70,7 +70,7 @@ pipeline {
     steps {
         echo '------------>test carga<------------'                     
         dir("${PROJETC_PATH_JMETER}"){                          
-            sh './jmeter  -n -t PruebasAlquilerVehiculos.jmx -l ${WORKSPACE}/performacetest.jtl'   
+            sh './jmeter  -n -t ${WORKSPACE}/PruebasAlquilerVehiculos.jmx -l ${WORKSPACE}/performacetest.jtl'   
             performanceReport parsers: [[$class: 'JMeterParser', glob: "${WORKSPACE}/performacetest.jtl"]], sourceDataFiles: "${WORKSPACE}/performacetest.jtl", errorFailedThreshold: 15, errorUnstableThreshold: 15, ignoreFailedBuilds: false, ignoreUnstableBuilds: false, relativeFailedThresholdNegative: 0, relativeFailedThresholdPositive: 0, relativeUnstableThresholdNegative: 0, relativeUnstableThresholdPositive: 0
         }
 	   }
