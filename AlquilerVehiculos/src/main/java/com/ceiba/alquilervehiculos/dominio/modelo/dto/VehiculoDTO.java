@@ -26,10 +26,6 @@ public class VehiculoDTO {
 		this.precio = precio;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
 	public String getPlaca() {
 		return placa;
 	}
@@ -38,8 +34,8 @@ public class VehiculoDTO {
 		return modelo;
 	}
 
-	public String getMarca() {
-		return marca;
+	public Long getId() {
+		return id;
 	}
 
 	public String getColor() {
@@ -48,6 +44,10 @@ public class VehiculoDTO {
 
 	public double getPrecio() {
 		return precio;
+	}
+
+	public String getMarca() {
+		return marca;
 	}
 
 	public void setId(Long id) {
