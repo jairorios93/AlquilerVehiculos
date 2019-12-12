@@ -8,12 +8,10 @@ import { AdministrarVehiculoComponent } from './feature/vehiculo/administrar-veh
 import { MenuComponent } from './feature/menu/menu/menu.component';
 import { appRutas } from './rutas';
 import { HttpClientModule } from '@angular/common/http';
-import { ServiceVehiculo } from './feature/shared/service/service-vehiculo';
-import { ServiceUsuario } from './feature/shared/service/service-usuario';
-import { ServiceAlquilarVehiculo } from './feature/shared/service/service-alquilar.vehiculo';
 import { UrlRuta } from './feature/shared/urlRuta';
 import { AdministrarUsuarioComponent } from './feature/usuario/administrar-usuario/administrar-usuario.component';
 import { AdministrarAlquilerComponent } from './feature/alquiler/administrar-alquiler/administrar-alquiler.component';
+import { BaseService } from 'src/app/core/services/rest.service'
 
 
 @NgModule({
@@ -32,7 +30,7 @@ import { AdministrarAlquilerComponent } from './feature/alquiler/administrar-alq
     ReactiveFormsModule,
     RouterModule.forRoot(appRutas),
   ],
-  providers: [ServiceVehiculo, ServiceUsuario, ServiceAlquilarVehiculo, UrlRuta],
+  providers: [BaseService, UrlRuta],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

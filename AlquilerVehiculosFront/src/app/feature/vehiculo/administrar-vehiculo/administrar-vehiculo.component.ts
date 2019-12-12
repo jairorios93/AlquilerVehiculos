@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ServiceVehiculo } from 'src/app/feature/shared/service/service-vehiculo';
+import { BaseService } from 'src/app/core/services/rest.service'
 import { Vehiculo } from 'src/app/feature/shared/model/vehiculo';
 
 @Component({
@@ -14,7 +14,7 @@ export class AdministrarVehiculoComponent implements OnInit {
   vehiculo: Vehiculo = new Vehiculo;
   form: NgForm;
 
-  constructor(private vehiculoServicio: ServiceVehiculo , private router: Router) { }
+  constructor(private baseService : BaseService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -23,12 +23,21 @@ export class AdministrarVehiculoComponent implements OnInit {
     if (!this.vehiculo.placa || !this.vehiculo.precio) {
       alert('Ingrese una placa y un precio');
     } else {
-      this.vehiculoServicio.registrarVehiculo(this.vehiculo).subscribe(result => {
+      const enviarVehiculo: Vehiculo = {
+        id: 1,
+        placa: this.vehiculo.placa,
+        modelo: this.vehiculo.modelo,
+        marca: this.vehiculo.marca,
+        color: this.vehiculo.color,
+        precio: this.vehiculo.precio
+      };
+      this.baseService.queryPost('vehiculo/registrarVehiculo', enviarVehiculo).subscribe(result => {
         alert('El vehiculo ha sido registrado');
         this.limpiarVentana();
       }, err => {
         alert(err.error.message);
       });
+
     }
   }
 
@@ -36,7 +45,7 @@ export class AdministrarVehiculoComponent implements OnInit {
     if (!this.vehiculo.placa) {
       alert('Ingrese una placa');
     } else {
-    this.vehiculoServicio.buscarVehiculo(this.vehiculo.placa).subscribe(result => {
+      this.baseService.queryGet('vehiculo/buscarVehiculo', this.vehiculo.placa).subscribe(result => {
       if (result != null) {
         this.vehiculo.id = result['id'];
         this.vehiculo.placa = result['placa'];

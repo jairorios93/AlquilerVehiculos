@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ServiceUsuario } from 'src/app/feature/shared/service/service-usuario';
+import { BaseService } from 'src/app/core/services/rest.service'
 import { Usuario } from 'src/app/feature/shared/model/usuario';
 
 @Component({
@@ -14,7 +14,7 @@ export class AdministrarUsuarioComponent implements OnInit {
   usuario: Usuario = new Usuario;
   form: NgForm;
 
-  constructor(private usuarioServicio: ServiceUsuario, private router: Router) { }
+  constructor(private baseService: BaseService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -23,11 +23,18 @@ export class AdministrarUsuarioComponent implements OnInit {
     if (!this.usuario.cedula || !this.usuario.nombres || !this.usuario.fechaNacimiento) {
       alert('Ingrese la informacion del usuario');
     } else {
-      this.usuarioServicio.registrarUsuario(this.usuario).subscribe(result => {
+      const enviarUsuario: Usuario = {
+        cedula: this.usuario.cedula,
+        nombres: this.usuario.nombres,
+        apellidos: this.usuario.apellidos,
+        fechaNacimiento: this.usuario.fechaNacimiento
+      };
+      this.baseService.queryPost('usuario/registrarUsuario', enviarUsuario).subscribe(result => {
         this.limpiarVentana();
       }, err => {
         alert(err.error.message);
       });
+
     }
   }
 
@@ -35,7 +42,7 @@ export class AdministrarUsuarioComponent implements OnInit {
     if (!this.usuario.cedula) {
       alert('Ingrese una cedula');
     } else {
-    this.usuarioServicio.buscarUsuario(this.usuario.cedula).subscribe(result => {
+      this.baseService.queryGet('usuario/buscarUsuario', this.usuario.cedula).subscribe(result => {
       if (result != null) {
         this.usuario.cedula = result['cedula'];
         this.usuario.nombres = result['nombres'];
@@ -49,6 +56,7 @@ export class AdministrarUsuarioComponent implements OnInit {
     });
    }
   }
+
   limpiarVentana() {
     this.usuario = new Usuario;
   }
