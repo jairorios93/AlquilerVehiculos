@@ -10,7 +10,6 @@ import com.ceiba.alquilervehiculos.dominio.puerto.repositorio.RepositorioAlquila
 public class ServicioDevolverVehiculo {
 
 	private RepositorioAlquilarVehiculo repositorioAlquilarVehiculo;
-	private static final String VEHICULO_DEVUELTO = "El vehiculo ya ha sido devuelto";
 	private static final String VEHICULO_NO_ENCONTRADO = "No se encuentra el vehiculo con placa ";
 	private static final double DEVOLUCION_ATRASADA = 0.2;
 	private static final double DEVOLUCION_ANTICIPADA = 0.05;
@@ -23,8 +22,6 @@ public class ServicioDevolverVehiculo {
 		AlquilarVehiculoDTO alquilarVehiculoDTO = repositorioAlquilarVehiculo.buscarAlquilarVehiculo(placa);
 		if (alquilarVehiculoDTO == null) {
 			throw new ExcepcionNegocio(VEHICULO_NO_ENCONTRADO + placa);
-		} else if (!alquilarVehiculoDTO.isEstado()) {
-			throw new ExcepcionNegocio(VEHICULO_DEVUELTO);
 		} else {
 
 			GregorianCalendar fin = new GregorianCalendar();

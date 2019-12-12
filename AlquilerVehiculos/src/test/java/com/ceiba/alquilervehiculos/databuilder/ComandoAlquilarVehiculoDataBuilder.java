@@ -36,9 +36,9 @@ public class ComandoAlquilarVehiculoDataBuilder {
 	
 	public ComandoAlquilarVehiculo conVehiculoYFecha(ComandoVehiculo vehiculo, int dias) {
 		GregorianCalendar fechaAjustada = new GregorianCalendar();
-		fechaAjustada.setTime(fechaInicio);
+		fechaAjustada.setTime(fechaFin);
 		fechaAjustada.add(Calendar.DATE, dias);
-		return new ComandoAlquilarVehiculo(id, usuario, vehiculo, fechaInicio, fechaFin, estado, valor);
+		return new ComandoAlquilarVehiculo(id, usuario, vehiculo, fechaInicio, fechaAjustada.getTime(), estado, valor);
 	}
 	
 	public ComandoAlquilarVehiculo build() {
