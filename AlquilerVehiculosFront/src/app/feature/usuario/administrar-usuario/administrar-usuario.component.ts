@@ -30,6 +30,7 @@ export class AdministrarUsuarioComponent implements OnInit {
         fechaNacimiento: this.usuario.fechaNacimiento
       };
       this.baseService.queryPost('usuario/registrarUsuario', enviarUsuario).subscribe(result => {
+        alert('El usuario ha sido registrado')
         this.limpiarVentana();
       }, err => {
         alert(err.error.message);
