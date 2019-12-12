@@ -35,24 +35,28 @@ public class AlquilarVehiculoDTO {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public VehiculoDTO getVehiculo() {
+		return vehiculo;
 	}
 
 	public UsuarioDTO getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(UsuarioDTO usuario) {
-		this.usuario = usuario;
-	}
-
-	public VehiculoDTO getVehiculo() {
-		return vehiculo;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public void setVehiculo(VehiculoDTO vehiculo) {
 		this.vehiculo = vehiculo;
+	}
+
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
+	}
+
+	public void setUsuario(UsuarioDTO usuario) {
+		this.usuario = usuario;
 	}
 
 	public Date getFechaInicio() {
@@ -63,28 +67,23 @@ public class AlquilarVehiculoDTO {
 		this.fechaInicio = fechaInicio;
 	}
 
-	public Date getFechaFin() {
-		return fechaFin;
-	}
-
-	public void setFechaFin(Date fechaFin) {
-		this.fechaFin = fechaFin;
-	}
-
 	public boolean isEstado() {
 		return estado;
-	}
-
-	public void setEstado(boolean estado) {
-		this.estado = estado;
-	}
-
-	public double getValor() {
-		return valor;
 	}
 
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
 
+	public double getValor() {
+		return valor;
+	}
+
+	public Date getFechaFin() {
+		return fechaFin;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
 }

@@ -22,12 +22,12 @@ public class Usuario {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public Long getCedula() {
-		return cedula;
-	}
-
 	public void setCedula(Long cedula) {
 		this.cedula = cedula;
+	}
+
+	public Long getCedula() {
+		return cedula;
 	}
 
 	public String getNombres() {
@@ -38,20 +38,19 @@ public class Usuario {
 		this.nombres = nombres;
 	}
 
-	public String getApellidos() {
-		return apellidos;
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
 
+	public String getApellidos() {
+		return apellidos;
+	}
+
 	public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
-
-	public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
-	}
-
 }

@@ -32,60 +32,60 @@ public class AlquilarVehiculo {
 		this.valor = valor;
 	}
 
-	public Long getId() {
-		return id;
+	public Vehiculo getVehiculo() {
+		return vehiculo;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+	public Long getId() {
+		return id;
 	}
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 
-	public Vehiculo getVehiculo() {
-		return vehiculo;
-	}
-
-	public void setVehiculo(Vehiculo vehiculo) {
-		this.vehiculo = vehiculo;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
 	public Date getFechaInicio() {
 		return fechaInicio;
 	}
 
+	public void setVehiculo(Vehiculo vehiculo) {
+		this.vehiculo = vehiculo;
+	}
+
 	public void setFechaInicio(Date fechaInicio) {
 		this.fechaInicio = fechaInicio;
-	}
-
-	public Date getFechaFin() {
-		return fechaFin;
-	}
-
-	public void setFechaFin(Date fechaFin) {
-		this.fechaFin = fechaFin;
 	}
 
 	public boolean isEstado() {
 		return estado;
 	}
 
-	public void setEstado(boolean estado) {
-		this.estado = estado;
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
+	}
+
+	public Date getFechaFin() {
+		return fechaFin;
+	}
+
+	public void setValor(double valor) {
+		this.valor = valor;
 	}
 
 	public double getValor() {
 		return valor;
 	}
 
-	public void setValor(double valor) {
-		this.valor = valor;
+	public void setEstado(boolean estado) {
+		this.estado = estado;
 	}
 
 }

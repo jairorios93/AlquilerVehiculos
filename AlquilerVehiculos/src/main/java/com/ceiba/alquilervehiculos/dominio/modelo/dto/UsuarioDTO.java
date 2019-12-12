@@ -22,10 +22,6 @@ public class UsuarioDTO {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public Long getCedula() {
-		return cedula;
-	}
-
 	public void setCedula(Long cedula) {
 		this.cedula = cedula;
 	}
@@ -34,8 +30,8 @@ public class UsuarioDTO {
 		return nombres;
 	}
 
-	public void setNombres(String nombres) {
-		this.nombres = nombres;
+	public Long getCedula() {
+		return cedula;
 	}
 
 	public String getApellidos() {
@@ -46,12 +42,16 @@ public class UsuarioDTO {
 		this.apellidos = apellidos;
 	}
 
-	public Date getFechaNacimiento() {
-		return fechaNacimiento;
+	public void setNombres(String nombres) {
+		this.nombres = nombres;
 	}
 
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
 	}
 
 }

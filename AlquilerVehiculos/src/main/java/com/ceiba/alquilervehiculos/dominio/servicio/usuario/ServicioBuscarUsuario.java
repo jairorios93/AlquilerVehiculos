@@ -10,7 +10,7 @@ public class ServicioBuscarUsuario {
 	public ServicioBuscarUsuario(RepositorioUsuario repositorioUsuario) {
 		this.repositorioUsuario = repositorioUsuario;
 	}
-	
+
 	public UsuarioDTO buscarUsuario(Long cedula) {
 		return repositorioUsuario.buscarUsuario(cedula);
 	}

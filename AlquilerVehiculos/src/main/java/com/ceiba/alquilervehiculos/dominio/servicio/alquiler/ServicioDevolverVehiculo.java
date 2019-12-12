@@ -9,7 +9,7 @@ import com.ceiba.alquilervehiculos.dominio.puerto.repositorio.RepositorioAlquila
 
 public class ServicioDevolverVehiculo {
 
-	private RepositorioAlquilarVehiculo repositorioAlquilarVehiculo; 
+	private RepositorioAlquilarVehiculo repositorioAlquilarVehiculo;
 	private static final String VEHICULO_DEVUELTO = "El vehiculo ya ha sido devuelto";
 	private static final String VEHICULO_NO_ENCONTRADO = "No se encuentra el vehiculo con placa ";
 	private static final double DEVOLUCION_ATRASADA = 0.2;
