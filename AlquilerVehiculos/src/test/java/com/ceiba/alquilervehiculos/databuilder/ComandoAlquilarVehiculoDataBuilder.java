@@ -2,6 +2,7 @@ package com.ceiba.alquilervehiculos.databuilder;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import com.ceiba.alquilervehiculos.aplicacion.comando.ComandoAlquilarVehiculo;
 import com.ceiba.alquilervehiculos.aplicacion.comando.ComandoUsuario;
@@ -27,7 +28,12 @@ public class ComandoAlquilarVehiculoDataBuilder {
 		usuario = new ComandoUsuarioDataBuilder().build();
 		vehiculo = new ComandoVehiculoDataBuilder().build();
 		fechaInicio = Calendar.getInstance().getTime();
-		fechaFin = Calendar.getInstance().getTime();
+		
+		GregorianCalendar fechaAjustada = new GregorianCalendar();
+		fechaAjustada.setTime(fechaInicio);
+		fechaAjustada.add(Calendar.DATE, 1);
+		fechaFin = fechaAjustada.getTime();
+		
 		estado = true;
 		valor = 1050000;
 		id = 1L;

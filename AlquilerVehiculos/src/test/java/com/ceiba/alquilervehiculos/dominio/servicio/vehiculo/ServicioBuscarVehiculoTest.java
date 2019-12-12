@@ -13,7 +13,7 @@ import com.ceiba.alquilervehiculos.dominio.puerto.repositorio.RepositorioVehicul
 public class ServicioBuscarVehiculoTest {
 
 	@Test
-	void obtenerUsuario() {
+	void obtenerVehiculo() {
 		RepositorioVehiculo repositorioVehiculo = mock(RepositorioVehiculo.class);
 		VehiculoDTO vehiculoDTO = new VehiculoDTODataBuilder().build();
 

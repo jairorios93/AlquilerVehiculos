@@ -78,4 +78,14 @@ public class AlquilerControladorTest {
 				.contentType(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk());
 	}
 
+	@Test
+	void devolverVehiculoNoEncontrado() throws Exception {
+		try {
+			mvc.perform(get("/alquiler/devolverVehiculo/{PLACA}", 1L).contentType(MediaType.APPLICATION_JSON))
+					.andDo(print()).andExpect(status().isInternalServerError());
+		} catch (Exception e) {
+			System.err.println(e.getCause().getMessage());
+		}
+	}
+
 }
