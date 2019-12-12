@@ -41,7 +41,7 @@ export class AdministrarAlquilerComponent implements OnInit {
           estado: true,
           valor: this.alquilarVehiculo.vehiculo.precio
         };
-        this.baseService.queryPost('alquiler/alquilarVehiculo', enviarAlquiler).subscribe(result => {
+        this.baseService.queryPost('alquiler/alquilerVehiculo', enviarAlquiler).subscribe(result => {
         alert('El vehiculo ha sido alquilado');
         this.limpiarVentana();
       }, err => {
@@ -57,7 +57,7 @@ export class AdministrarAlquilerComponent implements OnInit {
     if (!this.usuario.cedula) {
       alert('Ingrese una cedula');
     } else {
-      this.baseService.queryGet('usuario/buscarUsuario', this.usuario.cedula).subscribe(result => {
+      this.baseService.queryGet('usuario/busquedaUsuario', this.usuario.cedula).subscribe(result => {
         if (result != null) {
           this.alquilarVehiculo.usuario = this.usuario;
           this.alquilarVehiculo.usuario.cedula = result['cedula'];
@@ -80,7 +80,7 @@ export class AdministrarAlquilerComponent implements OnInit {
     if (!this.vehiculo.placa) {
       alert('Ingrese una placa');
     } else {
-      this.baseService.queryGet('vehiculo/buscarVehiculo', this.vehiculo.placa).subscribe(result => {
+      this.baseService.queryGet('vehiculo/busquedaVehiculo', this.vehiculo.placa).subscribe(result => {
         if (result != null) {
           this.alquilarVehiculo.vehiculo = this.vehiculo;
           this.alquilarVehiculo.vehiculo.id = result['id'];
@@ -110,7 +110,7 @@ export class AdministrarAlquilerComponent implements OnInit {
   }
 
   OnSubmitDevolverVehiculo(form: NgForm) {
-    this.baseService.queryGet('alquiler/devolverVehiculo', this.vehiculo.placa).subscribe(result => {
+    this.baseService.queryGet('alquiler/devolucionVehiculo', this.vehiculo.placa).subscribe(result => {
       alert('El vehiculo ha sido devuelto');
     }, err => {
         alert(err.error.message);

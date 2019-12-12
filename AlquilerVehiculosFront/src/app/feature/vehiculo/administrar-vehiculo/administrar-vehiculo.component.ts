@@ -31,7 +31,7 @@ export class AdministrarVehiculoComponent implements OnInit {
         color: this.vehiculo.color,
         precio: this.vehiculo.precio
       };
-      this.baseService.queryPost('vehiculo/registrarVehiculo', enviarVehiculo).subscribe(result => {
+      this.baseService.queryPost('vehiculo/registroVehiculo', enviarVehiculo).subscribe(result => {
         alert('El vehiculo ha sido registrado');
         this.limpiarVentana();
       }, err => {
@@ -45,7 +45,7 @@ export class AdministrarVehiculoComponent implements OnInit {
     if (!this.vehiculo.placa) {
       alert('Ingrese una placa');
     } else {
-      this.baseService.queryGet('vehiculo/buscarVehiculo', this.vehiculo.placa).subscribe(result => {
+      this.baseService.queryGet('vehiculo/busquedaVehiculo', this.vehiculo.placa).subscribe(result => {
       if (result != null) {
         this.vehiculo.id = result['id'];
         this.vehiculo.placa = result['placa'];

@@ -27,12 +27,12 @@ public class VehiculoControlador {
 		this.manejadorBuscarVehiculo = manejadorBuscarVehiculo;
 	}
 
-	@PostMapping("/registrarVehiculo")
+	@PostMapping("/registroVehiculo")
 	public void registrarVehiculo(@RequestBody ComandoVehiculo vehiculo) {
 		manejadorCrearVehiculo.registrarVehiculo(vehiculo);
 	}
 
-	@GetMapping("/buscarVehiculo/{PLACA}")
+	@GetMapping("/busquedaVehiculo/{PLACA}")
 	public VehiculoDTO buscarVehiculo(@PathVariable(name = "PLACA") String placa) {
 		return this.manejadorBuscarVehiculo.buscarVehiculo(placa);
 	}

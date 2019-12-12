@@ -48,25 +48,25 @@ public class UsuarioControladorTest {
 	@Test
 	void registrarUsuario() throws Exception {
 		ComandoUsuario comandoUsuario = new ComandoUsuarioDataBuilder().build();
-		mvc.perform(post("/usuario/registrarUsuario").contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(post("/usuario/registroUsuario").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(comandoUsuario))).andDo(print()).andExpect(status().isOk());
 	}
 
 	@Test
 	void buscarUsuario() throws Exception {
 		ComandoUsuario comandoUsuario = new ComandoUsuarioDataBuilder().build();
-		mvc.perform(post("/usuario/registrarUsuario").contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(post("/usuario/registroUsuario").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(comandoUsuario))).andDo(print()).andExpect(status().isOk());
 
 		UsuarioDTO usuarioDTO = new UsuarioDTODataBuilder().build();
 		mvc.perform(
-				get("/usuario/buscarUsuario/{CEDULA}", usuarioDTO.getCedula()).contentType(MediaType.APPLICATION_JSON))
+				get("/usuario/busquedaUsuario/{CEDULA}", usuarioDTO.getCedula()).contentType(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isOk());
 	}
 
 	@Test
 	void buscarUsuarioNoEncontrado() throws Exception {
-		mvc.perform(get("/usuario/buscarUsuario/{CEDULA}", 1L).contentType(MediaType.APPLICATION_JSON)).andDo(print())
+		mvc.perform(get("/usuario/busquedaUsuario/{CEDULA}", 1L).contentType(MediaType.APPLICATION_JSON)).andDo(print())
 				.andExpect(content().string(""));
 	}
 }

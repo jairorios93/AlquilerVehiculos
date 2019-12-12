@@ -46,29 +46,29 @@ public class VehiculoControladorTest {
 	@Test
 	void registrarVehiculo() throws Exception {
 		ComandoVehiculo comandoVehiculo = new ComandoVehiculoDataBuilder().conPlaca("ASD89");
-		mvc.perform(post("/vehiculo/registrarVehiculo").contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(post("/vehiculo/registroVehiculo").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(comandoVehiculo))).andDo(print()).andExpect(status().isOk());
 	}
 
 	@Test
 	void buscarVehiculo() throws Exception {
 		ComandoVehiculo comandoVehiculo = new ComandoVehiculoDataBuilder().conPlaca("ASD88");
-		mvc.perform(post("/vehiculo/registrarVehiculo").contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(post("/vehiculo/registroVehiculo").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(comandoVehiculo))).andDo(print()).andExpect(status().isOk());
 
 		VehiculoDTO vehiculoDTO = new VehiculoDTODataBuilder().build();
 		mvc.perform(
-				get("/vehiculo/buscarVehiculo/{PLACA}", vehiculoDTO.getPlaca()).contentType(MediaType.APPLICATION_JSON))
+				get("/vehiculo/busquedaVehiculo/{PLACA}", vehiculoDTO.getPlaca()).contentType(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isOk());
 	}
 
 	@Test
 	void registrarVehiculoExistente() throws Exception {
 		ComandoVehiculo comandoVehiculo = new ComandoVehiculoDataBuilder().conPlaca("ASD87");
-		mvc.perform(post("/vehiculo/registrarVehiculo").contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(post("/vehiculo/registroVehiculo").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(comandoVehiculo))).andDo(print()).andExpect(status().isOk());
 		try {
-			mvc.perform(post("/vehiculo/registrarVehiculo").contentType(MediaType.APPLICATION_JSON)
+			mvc.perform(post("/vehiculo/registroVehiculo").contentType(MediaType.APPLICATION_JSON)
 					.content(objectMapper.writeValueAsString(comandoVehiculo))).andDo(print())
 					.andExpect(status().isInternalServerError());
 		} catch (Exception e) {
