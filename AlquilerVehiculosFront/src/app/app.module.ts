@@ -1,0 +1,38 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppComponent } from './app.component';
+import { RouterModule } from '@angular/router';
+import { AdministrarVehiculoComponent } from './feature/vehiculo/administrar-vehiculo/administrar-vehiculo.component';
+import { MenuComponent } from './feature/menu/menu/menu.component';
+import { appRutas } from './rutas';
+import { HttpClientModule } from '@angular/common/http';
+import { ServiceVehiculo } from './feature/shared/service/service-vehiculo';
+import { ServiceUsuario } from './feature/shared/service/service-usuario';
+import { ServiceAlquilarVehiculo } from './feature/shared/service/service-alquilar.vehiculo';
+import { UrlRuta } from './feature/shared/urlRuta';
+import { AdministrarUsuarioComponent } from './feature/usuario/administrar-usuario/administrar-usuario.component';
+import { AdministrarAlquilerComponent } from './feature/alquiler/administrar-alquiler/administrar-alquiler.component';
+
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    AdministrarVehiculoComponent,
+    MenuComponent,
+    AdministrarUsuarioComponent,
+    AdministrarAlquilerComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRutas),
+  ],
+  providers: [ServiceVehiculo, ServiceUsuario, ServiceAlquilarVehiculo, UrlRuta],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

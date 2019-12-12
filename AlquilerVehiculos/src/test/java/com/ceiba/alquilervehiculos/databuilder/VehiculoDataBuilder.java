@@ -26,6 +26,6 @@ public class VehiculoDataBuilder {
 	}
 
 	public Vehiculo build() {
-		return new Vehiculo(id, placa, modelo, marca, color, precio);
+		return new Vehiculo(placa, modelo, marca, color, precio);
 	}
 }

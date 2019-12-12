@@ -1,0 +1,71 @@
+<div class="card-header">
+  <h1 class="center-align">Administrar alquileres</h1>
+</div>
+<div>
+  <div class="card-body">
+    <form class="form-horizontal" #form="ngForm">
+      <div class="col">
+
+        <div class="input-field col s3">
+          <label for="cedula" class="col-form-label col-sm-2">Cedula</label>
+          <input type="number" class="form-control" [(ngModel)]="usuario.cedula" name="cedula" required
+                 #cedula="ngModel">
+        </div>
+
+        <div class="input-field col s3">
+          <button id="alquilar" class="btn btn-primary" type="submit"
+                  (click)="buscarUsuario(form)">
+            Buscar Usuario
+          </button>
+        </div>
+
+        <div class="input-field col s3">
+          <label for="placa" class="col-form-label col-sm-2">Placa</label>
+          <input type="text" class="form-control" [(ngModel)]="vehiculo.placa" name="placa" required
+                 #placa="ngModel">
+        </div>
+
+        <div class="input-field col s3">
+          <button id="alquilar" class="btn btn-primary" type="submit"
+                  (click)="buscarVehiculo(form)">
+            Buscar vehiculo
+          </button>
+        </div>
+
+
+        <div class="input-field col s3">
+          <label for="fechaInicio" class="col-form-label col-sm-2">Fecha Inicio</label>
+          <input type="date" class="form-control" [(ngModel)]="alquilarVehiculo.fechaInicio" name="fechaInicio" required
+                 #fechaInicio="ngModel" min="{{minDate| date:'yyyy-MM-dd'}}" (ngModelChange)="onChancgeFecha()">
+        </div>
+
+        <div class="input-field col s3">
+          <label for="fechaFin" class="col-form-label col-sm-2">Fecha Fin</label>
+          <input type="date" class="form-control" [(ngModel)]="alquilarVehiculo.fechaFin" name="fechaFin" required
+                 #fechaFin="ngModel" min="{{alquilarVehiculo.fechaInicio | date:'yyyy-MM-dd'}}">
+        </div>
+
+        <div class="input-field col s3">
+          <label for="valor" class="col-form-label col-sm-2">Valor</label>
+          <input type="number" class="form-control" [(ngModel)]="vehiculo.precio" name="valor" required disabled
+                 #valor="ngModel" >
+        </div>
+
+      </div>
+      <br />
+      <div class="raw">
+        <div class="center-align input-field col s3">
+          <button id="alquilar" class="btn btn-primary" type="submit"
+                  (click)="OnSubmitRegistrar(form)">
+            Alquilar
+          </button>
+
+          <button id="devolverVehiculo" class="btn btn-primary" type="submit"
+                  (click)="OnSubmitDevolverVehiculo(form)">
+            Devolver vehiculo
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

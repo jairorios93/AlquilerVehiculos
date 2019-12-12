@@ -1,0 +1,51 @@
+<div class="card-header">
+  <h1 class="center-align">Administrar usuarios</h1>
+</div>
+<div>
+  <div class="card-body">
+    <form class="form-horizontal" #form="ngForm">
+      <div class="col">
+
+        <div class="input-field col s3">
+          <label for="cedula" class="col-form-label col-sm-2">Cedula</label>
+          <input type="number" class="form-control" [(ngModel)]="usuario.cedula" name="cedula" required
+                 #cedula="ngModel">
+        </div>
+
+        <div class="input-field col s3">
+          <label for="nombres" class="col-form-label col-sm-2">Nombres</label>
+          <input type="text" class="form-control" [(ngModel)]="usuario.nombres" name="nombres" required
+                 #nombres="ngModel">
+        </div>
+
+        <div class="input-field col s3">
+          <label for="apellidos" class="col-form-label col-sm-2">Apellidos</label>
+          <input type="text" class="form-control" [(ngModel)]="usuario.apellidos" name="apellidos" required
+                 #apellidos="ngModel">
+        </div>
+
+        <div class="input-field col s3">
+          <label for="fechaNacimiento" class="col-form-label col-sm-2">Fecha de Nacimiento</label>
+          <input type="date" class="form-control" [(ngModel)]="usuario.fechaNacimiento" name="fechaNacimiento" required
+                 #fechaNacimiento="ngModel">
+        </div>
+
+
+      </div>
+      <br />
+      <div class="raw">
+        <div class="center-align input-field col s3">
+          <button id="Guardar" class="btn btn-primary" type="submit"
+                  (click)="OnSubmitRegistrar(form)">
+            Guardar
+          </button>
+
+          <button id="Buscar" class="btn btn-primary" type="submit"
+                  (click)="OnSubmitBuscar(form)">
+            Buscar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

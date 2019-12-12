@@ -38,8 +38,8 @@ public class ServicioBean {
 
 	@Bean
 	public ServicioAlquilarVehiculo crearServicioAlquilarVehiculo(
-			RepositorioAlquilarVehiculo repositorioAlquilarVehiculo) {
-		return new ServicioAlquilarVehiculo(repositorioAlquilarVehiculo);
+			RepositorioAlquilarVehiculo repositorioAlquilarVehiculo, RepositorioVehiculo repositorioVehiculo) {
+		return new ServicioAlquilarVehiculo(repositorioAlquilarVehiculo, repositorioVehiculo);
 	}
 
 	@Bean

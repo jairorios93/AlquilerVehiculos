@@ -7,24 +7,37 @@ import java.util.GregorianCalendar;
 import com.ceiba.alquilervehiculos.dominio.excepciones.ExcepcionNegocio;
 import com.ceiba.alquilervehiculos.dominio.modelo.AlquilarVehiculo;
 import com.ceiba.alquilervehiculos.dominio.modelo.dto.AlquilarVehiculoDTO;
+import com.ceiba.alquilervehiculos.dominio.modelo.dto.VehiculoDTO;
 import com.ceiba.alquilervehiculos.dominio.puerto.repositorio.RepositorioAlquilarVehiculo;
+import com.ceiba.alquilervehiculos.dominio.puerto.repositorio.RepositorioVehiculo;
 
 public class ServicioAlquilarVehiculo {
 
 	private RepositorioAlquilarVehiculo repositorioAlquilarVehiculo;
+	private RepositorioVehiculo repositorioVehiculo;
 	private static final String VEHICULO_SIN_DEVOLVER = "El vehiculo no ha sido devuelto todavia";
 	private static final double DESCUENTO_CUMPLEANIOS = 0.1;
 
-	public ServicioAlquilarVehiculo(RepositorioAlquilarVehiculo repositorioAlquilarVehiculo) {
+	public ServicioAlquilarVehiculo(RepositorioAlquilarVehiculo repositorioAlquilarVehiculo,
+			RepositorioVehiculo repositorioVehiculo) {
 		this.repositorioAlquilarVehiculo = repositorioAlquilarVehiculo;
+		this.repositorioVehiculo = repositorioVehiculo;
 	}
 
 	public void alquilarVehiculo(AlquilarVehiculo alquilarVehiculo) {
+		VehiculoDTO vehiculoDTO = repositorioVehiculo.buscarVehiculo(alquilarVehiculo.getVehiculo().getPlaca());
+
+		if (vehiculoDTO != null) {
+			alquilarVehiculo.getVehiculo().setId(vehiculoDTO.getId());
+		}
+
 		AlquilarVehiculoDTO alquilarVehiculoDTO = repositorioAlquilarVehiculo
 				.buscarAlquilarVehiculo(alquilarVehiculo.getVehiculo().getPlaca());
+
 		if (alquilarVehiculoDTO != null && alquilarVehiculoDTO.isEstado()) {
 			throw new ExcepcionNegocio(VEHICULO_SIN_DEVOLVER);
 		} else {
+
 			alquilarVehiculo.setEstado(true);
 
 			GregorianCalendar fechaNacimiento = fechaAjustada(alquilarVehiculo.getUsuario().getFechaNacimiento());
@@ -47,7 +60,7 @@ public class ServicioAlquilarVehiculo {
 			repositorioAlquilarVehiculo.alquilarVehiculo(alquilarVehiculo);
 		}
 	}
-	
+
 	public GregorianCalendar fechaAjustada(Date fechaOriginal) {
 		GregorianCalendar fechaAjustada = new GregorianCalendar();
 		fechaAjustada.setTime(fechaOriginal);

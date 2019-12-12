@@ -17,8 +17,7 @@ public class Vehiculo {
 	public Vehiculo() {
 	}
 
-	public Vehiculo(Long id, String placa, String modelo, String marca, String color, double precio) {
-		this.id = id;
+	public Vehiculo(String placa, String modelo, String marca, String color, double precio) {
 		this.placa = placa;
 		this.modelo = modelo;
 		this.marca = marca;

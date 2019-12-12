@@ -1,0 +1,57 @@
+<div class="card-header">
+  <h1 class="center-align">Administrar vehiculos</h1>
+</div>
+<div>
+  <div class="card-body">
+    <form class="form-horizontal" #form="ngForm">
+      <div class="col">
+
+        <div class="input-field col s3">
+          <label for="placa" class="col-form-label col-sm-2">Placa</label>
+          <input type="text" class="form-control" [(ngModel)]="vehiculo.placa" name="placa" required
+                 #placa="ngModel">
+        </div>
+
+        <div class="input-field col s3">
+          <label for="modelo" class="col-form-label col-sm-2">Modelo</label>
+          <input type="text" class="form-control" [(ngModel)]="vehiculo.modelo" name="modelo" required
+                 #modelo="ngModel">
+        </div>
+
+        <div class="input-field col s3">
+          <label for="marca" class="col-form-label col-sm-2">Marca</label>
+          <input type="text" class="form-control" [(ngModel)]="vehiculo.marca" name="marca" required
+                 #marca="ngModel">
+        </div>
+
+        <div class="input-field col s3">
+          <label for="color" class="col-form-label col-sm-2">Color</label>
+          <input type="text" class="form-control" [(ngModel)]="vehiculo.color" name="color" required
+                 #color="ngModel">
+        </div>
+
+        <div class="input-field col s3">
+          <label for="precio" class="col-form-label col-sm-2">Precio</label>
+          <input type="number" class="form-control" [(ngModel)]="vehiculo.precio" name="precio" required
+                 #precio="ngModel">
+        </div>
+
+
+      </div>
+        <br />
+        <div class="raw">
+          <div class="center-align input-field col s3">
+            <button id="Guardar" class="btn btn-primary" type="submit"
+                    (click)="OnSubmitRegistrar(form)">
+              Guardar
+            </button>
+
+            <button id="Buscar" class="btn btn-primary" type="submit"
+                    (click)="OnSubmitBuscar(form)">
+              Buscar
+            </button>
+          </div>
+        </div>
+</form>
+  </div>
+</div>

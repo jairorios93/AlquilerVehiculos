@@ -1,5 +1,6 @@
 package com.ceiba.alquilervehiculos.infrastructura.controladores;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import com.ceiba.alquilervehiculos.aplicacion.manejadores.alquiler.ManejadorAlqu
 import com.ceiba.alquilervehiculos.aplicacion.manejadores.alquiler.ManejadorDevolverVehiculo;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/alquiler")
 public class AlquilerControlador {
 

@@ -26,14 +26,14 @@ public class ComandoVehiculoDataBuilder {
 	}
 
 	public ComandoVehiculo build() {
-		return new ComandoVehiculo(id, placa, modelo, marca, color, precio);
+		return new ComandoVehiculo(placa, modelo, marca, color, precio);
 	}
 
 	public ComandoVehiculo conPlaca(String placa) {
-		return new ComandoVehiculo(id, placa, modelo, marca, color, precio);
+		return new ComandoVehiculo(placa, modelo, marca, color, precio);
 	}
 	
 	public ComandoVehiculo conId(Long id) {
-		return new ComandoVehiculo(id, placa, modelo, marca, color, precio);
+		return new ComandoVehiculo(placa, modelo, marca, color, precio);
 	}
 }

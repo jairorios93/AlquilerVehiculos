@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class VehiculoEntidad {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private Long id;
 
@@ -34,8 +34,7 @@ public class VehiculoEntidad {
 	public VehiculoEntidad() {
 	}
 
-	public VehiculoEntidad(Long id, String placa, String modelo, String marca, String color, double precio) {
-		this.id = id;
+	public VehiculoEntidad(String placa, String modelo, String marca, String color, double precio) {
 		this.placa = placa;
 		this.modelo = modelo;
 		this.marca = marca;
