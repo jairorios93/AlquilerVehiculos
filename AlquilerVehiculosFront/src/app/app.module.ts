@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { AdministrarVehiculoComponent } from './feature/vehiculo/administrar-vehiculo/administrar-vehiculo.component';
-import { MenuComponent } from './feature/menu/menu/menu.component';
+import { MenuComponent } from './shared/menu/menu/menu.component';
 import { appRutas } from './rutas';
 import { HttpClientModule } from '@angular/common/http';
 import { UrlRuta } from './feature/shared/urlRuta';

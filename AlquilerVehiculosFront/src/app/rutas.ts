@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { MenuComponent } from './feature/menu/menu/menu.component'
+import { MenuComponent } from './shared/menu/menu/menu.component'
 import { AdministrarVehiculoComponent } from './feature/vehiculo/administrar-vehiculo/administrar-vehiculo.component'
 import { AdministrarUsuarioComponent } from './feature/usuario/administrar-usuario/administrar-usuario.component'
 import { AdministrarAlquilerComponent } from './feature/alquiler/administrar-alquiler/administrar-alquiler.component'
