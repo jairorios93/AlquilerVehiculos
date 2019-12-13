@@ -69,8 +69,6 @@ describe('buscarUsuarios', function () {
   });
 })
 
-
-
 describe('alquilarVehiculo', function () {
   it('alquilarVehiculo', function () {
     browser.get('http://localhost:4200/administrar-alquiler');

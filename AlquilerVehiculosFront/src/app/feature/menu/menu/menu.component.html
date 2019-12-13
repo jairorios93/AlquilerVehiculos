@@ -1,27 +1,44 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" >
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" style="background-color: #007bff">
+    <ul class="navbar-nav mr-auto" >
       <li class="nav-item active" routerLinkActive="active">
-        <a class="nav-link" routerLink="/administrar-vehiculos">Administrar vehiculos</a>
+        <a class="nav-link" routerLink="/administrar-vehiculos" style="color: white">Administrar vehiculos</a>
       </li>
       <li class="nav-item active" routerLinkActive="active">
-        <a class="nav-link" routerLink="/administrar-usuarios">Administrar usuarios</a>
+        <a class="nav-link" routerLink="/administrar-usuarios" style="color: white">Administrar usuarios</a>
       </li>
       <li class="nav-item active" routerLinkActive="active">
-        <a class="nav-link" routerLink="/administrar-alquiler">Administrar alquileres</a>
+        <a class="nav-link" routerLink="/administrar-alquiler" style="color: white">Administrar alquileres</a>
       </li>
     </ul>
   </div>
 </nav>
 <div class="container-fluid main-section">
-  <router-outlet></router-outlet>
-</div>
+
+  
+    <div class="row">
+      <div class="col-sm col-xs-12">
+        <div class="card">
+          <img src="./assets/pequenio.jpg" alt="Card image cap" style='height: 100%; width: 100%; object-fit: contain'/>
+          <h1> Economico</h1>
+          <p class="card-text">Dos adultos</p>
+        </div>
+      </div>
+      <div class="col-sm col-xs-12">
+        <div class="card">
+          <img src="./assets/mediano.jpg" alt="Card image cap" style='height: 100%; width: 100%; object-fit: contain'/>
+          <h1> Mediano</h1>
+          <p class="card-text">Cinco adultos</p>
+        </div>
+      </div>
+      <div class="col-sm col-xs-12" >
+        <div class="card" >
+          <img src="./assets/grande.jpg" alt="Card image cap" style='height: 100%; width: 100%; object-fit: contain'/>
+          <h1 > Grande</h1>
+          <p class="card-text">Cinco adultos, 3 maletas</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
