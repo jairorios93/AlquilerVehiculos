@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-import { BaseService } from 'src/app/core/services/rest.service';
+import { ServicioAlquiler } from 'src/app/shared/servicios/alquiler/servicio.alquiler'
+import { ServicioVehiculo } from 'src/app/shared/servicios/vehiculo/servicio.vehiculo'
+import { ServicioUsuario } from 'src/app/shared/servicios/usuario/servicio.usuario'
 import { AlquilarVehiculo } from 'src/app/feature/shared/model/alquilar.vehiculo';
-import { Usuario } from 'src/app/feature/shared/model/usuario';
 import { Vehiculo } from 'src/app/feature/shared/model/vehiculo';
+import { Usuario } from 'src/app/feature/shared/model/usuario';
 
 @Component({
   selector: 'app-administrar-alquiler',
@@ -22,7 +23,7 @@ export class AdministrarAlquilerComponent implements OnInit {
   minDate: Date = new Date;
 
 
-  constructor(private baseService: BaseService, private router: Router) { }
+  constructor(private servicioAlquiler: ServicioAlquiler, private servicioUsuario: ServicioUsuario, private servicioVehiculo: ServicioVehiculo) { }
 
   ngOnInit() {
   }
@@ -41,12 +42,9 @@ export class AdministrarAlquilerComponent implements OnInit {
           estado: true,
           valor: this.alquilarVehiculo.vehiculo.precio
         };
-        this.baseService.queryPost('alquiler', enviarAlquiler).subscribe(result => {
-        alert('El vehiculo ha sido alquilado');
-        this.limpiarVentana();
-      }, err => {
-          alert(err.error.message);
-        });
+        if (this.servicioAlquiler.alquilar(enviarAlquiler)) {
+          this.limpiarVentana();
+        }
     } else {
       alert('Busque un usuario y un vehiculo');
      }
@@ -57,48 +55,42 @@ export class AdministrarAlquilerComponent implements OnInit {
     if (!this.usuario.cedula) {
       alert('Ingrese una cedula');
     } else {
-      this.baseService.queryGet('usuario', this.usuario.cedula).subscribe(result => {
-        if (result != null) {
+      this.usuario =  this.servicioUsuario.buscar(this.usuario.cedula);
+      if (this.usuario != null) {
           this.alquilarVehiculo.usuario = this.usuario;
-          this.alquilarVehiculo.usuario.cedula = result['cedula'];
-          this.alquilarVehiculo.usuario.nombres = result['nombres'];
-          this.alquilarVehiculo.usuario.apellidos = result['apellidos'];
-          this.alquilarVehiculo.usuario.fechaNacimiento = result['fechaNacimiento'];
+          this.alquilarVehiculo.usuario.cedula = this.usuario.cedula;
+          this.alquilarVehiculo.usuario.nombres = this.usuario.nombres;
+          this.alquilarVehiculo.usuario.apellidos = this.usuario.apellidos;
+          this.alquilarVehiculo.usuario.fechaNacimiento = this.usuario.fechaNacimiento;
           this.existeUsuario = true;
         } else {
           this.existeUsuario = false;
-          alert('No se encuentra informacion del usuario');
         }
-      }, err => {
-        this.existeUsuario = false;
-        alert(err.error.message);
-      });
-    }
+      }
   }
 
   buscarVehiculo(form: NgForm) {
     if (!this.vehiculo.placa) {
       alert('Ingrese una placa');
     } else {
-      this.baseService.queryGet('vehiculo', this.vehiculo.placa).subscribe(result => {
-        if (result != null) {
-          this.alquilarVehiculo.vehiculo = this.vehiculo;
-          this.alquilarVehiculo.vehiculo.id = result['id'];
-          this.alquilarVehiculo.vehiculo.placa = result['placa'];
-          this.alquilarVehiculo.vehiculo.modelo = result['modelo'];
-          this.alquilarVehiculo.vehiculo.marca = result['marca'];
-          this.alquilarVehiculo.vehiculo.color = result['color'];
-          this.alquilarVehiculo.vehiculo.precio = result['precio'];
-          this.existeVehiculo = true;
-        } else {
-          this.existeVehiculo = false;
-          alert('No se encuentra informacion del vehiculo');
-        }
-      }, err => {
+      this.vehiculo = this.servicioVehiculo.buscar(this.vehiculo.placa);
+      if (this.vehiculo != null) {
+        this.alquilarVehiculo.vehiculo = this.vehiculo;
+        this.alquilarVehiculo.vehiculo.id = this.vehiculo.id;
+        this.alquilarVehiculo.vehiculo.placa = this.vehiculo.placa;
+        this.alquilarVehiculo.vehiculo.modelo = this.vehiculo.modelo;
+        this.alquilarVehiculo.vehiculo.marca = this.vehiculo.marca;
+        this.alquilarVehiculo.vehiculo.color = this.vehiculo.color;
+        this.alquilarVehiculo.vehiculo.precio = this.vehiculo.precio;
+        this.existeVehiculo = true;
+      } else {
         this.existeVehiculo = false;
-        alert(err.error.message);
-      });
+      }
     }
+  }
+
+  OnSubmitDevolverVehiculo(form: NgForm) {
+    this.servicioAlquiler.devolver(this.vehiculo.placa);
   }
 
   limpiarVentana() {
@@ -107,14 +99,6 @@ export class AdministrarAlquilerComponent implements OnInit {
     this.vehiculo = new Vehiculo;
     this.existeVehiculo = false;
     this.existeUsuario = false;
-  }
-
-  OnSubmitDevolverVehiculo(form: NgForm) {
-    this.baseService.queryGet('alquiler', this.vehiculo.placa).subscribe(result => {
-      alert('El vehiculo ha sido devuelto');
-    }, err => {
-        alert(err.error.message);
-    });
   }
 
   onChancgeFecha() {

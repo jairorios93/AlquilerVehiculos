@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-import { BaseService } from 'src/app/core/services/rest.service'
+import { ServicioVehiculo } from 'src/app/shared/servicios/vehiculo/servicio.vehiculo'
 import { Vehiculo } from 'src/app/feature/shared/model/vehiculo';
 
 @Component({
@@ -11,13 +10,14 @@ import { Vehiculo } from 'src/app/feature/shared/model/vehiculo';
 })
 export class AdministrarVehiculoComponent implements OnInit {
 
-  vehiculo: Vehiculo = new Vehiculo;
-  form: NgForm;
+  constructor(private servicioVehiculo: ServicioVehiculo) { }
 
-  constructor(private baseService : BaseService, private router: Router) { }
+  vehiculo: Vehiculo = new Vehiculo;
 
   ngOnInit() {
   }
+
+  form: NgForm;
 
   OnSubmitRegistrar(form: NgForm) {
     if (!this.vehiculo.placa || !this.vehiculo.precio) {
@@ -31,13 +31,10 @@ export class AdministrarVehiculoComponent implements OnInit {
         color: this.vehiculo.color,
         precio: this.vehiculo.precio
       };
-      this.baseService.queryPost('vehiculo', enviarVehiculo).subscribe(result => {
-        alert('El vehiculo ha sido registrado');
+      console.log(this.servicioVehiculo.registrar(enviarVehiculo));
+     /* if (this.servicioVehiculo.registrar(enviarVehiculo)) {
         this.limpiarVentana();
-      }, err => {
-        alert(err.error.message);
-      });
-
+      }**/
     }
   }
 
@@ -45,20 +42,16 @@ export class AdministrarVehiculoComponent implements OnInit {
     if (!this.vehiculo.placa) {
       alert('Ingrese una placa');
     } else {
-      this.baseService.queryGet('vehiculo', this.vehiculo.placa).subscribe(result => {
-      if (result != null) {
-        this.vehiculo.id = result['id'];
-        this.vehiculo.placa = result['placa'];
-        this.vehiculo.modelo = result['modelo'];
-        this.vehiculo.marca = result['marca'];
-        this.vehiculo.color = result['color'];
-        this.vehiculo.precio = result['precio'];
-      } else {
-        alert('No se encuentra informacion');
+      this.vehiculo = this.servicioVehiculo.buscar(this.vehiculo.placa);
+      if (this.vehiculo != null) {
+        this.vehiculo = this.vehiculo;
+        this.vehiculo.id = this.vehiculo.id;
+        this.vehiculo.placa = this.vehiculo.placa;
+        this.vehiculo.modelo = this.vehiculo.modelo;
+        this.vehiculo.marca = this.vehiculo.marca;
+        this.vehiculo.color = this.vehiculo.color;
+        this.vehiculo.precio = this.vehiculo.precio;
       }
-    }, err => {
-        alert(err.error.message);
-    });
     }
   }
 

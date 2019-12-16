@@ -12,6 +12,10 @@ import { UrlRuta } from './feature/shared/urlRuta';
 import { AdministrarUsuarioComponent } from './feature/usuario/administrar-usuario/administrar-usuario.component';
 import { AdministrarAlquilerComponent } from './feature/alquiler/administrar-alquiler/administrar-alquiler.component';
 import { BaseService } from 'src/app/core/services/rest.service'
+import { ServicioAlquiler } from 'src/app/shared/servicios/alquiler/servicio.alquiler'
+import { ServicioUsuario } from 'src/app/shared/servicios/usuario/servicio.usuario'
+import { ServicioVehiculo } from 'src/app/shared/servicios/vehiculo/servicio.vehiculo'
+
 
 
 @NgModule({
@@ -30,7 +34,7 @@ import { BaseService } from 'src/app/core/services/rest.service'
     ReactiveFormsModule,
     RouterModule.forRoot(appRutas),
   ],
-  providers: [BaseService, UrlRuta],
+  providers: [BaseService, ServicioAlquiler, ServicioUsuario, ServicioVehiculo, UrlRuta],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

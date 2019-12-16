@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-import { BaseService } from 'src/app/core/services/rest.service'
+import { ServicioUsuario } from 'src/app/shared/servicios/usuario/servicio.usuario';
 import { Usuario } from 'src/app/feature/shared/model/usuario';
 
 @Component({
@@ -14,7 +13,7 @@ export class AdministrarUsuarioComponent implements OnInit {
   usuario: Usuario = new Usuario;
   form: NgForm;
 
-  constructor(private baseService: BaseService, private router: Router) { }
+  constructor(private servicioUsuario: ServicioUsuario) { }
 
   ngOnInit() {
   }
@@ -29,13 +28,10 @@ export class AdministrarUsuarioComponent implements OnInit {
         apellidos: this.usuario.apellidos,
         fechaNacimiento: this.usuario.fechaNacimiento
       };
-      this.baseService.queryPost('usuario', enviarUsuario).subscribe(result => {
-        alert('El usuario ha sido registrado')
-        this.limpiarVentana();
-      }, err => {
-        alert(err.error.message);
-      });
 
+      if (this.servicioUsuario.registrar(enviarUsuario)) {
+        this.limpiarVentana();
+      } 
     }
   }
 
@@ -43,18 +39,14 @@ export class AdministrarUsuarioComponent implements OnInit {
     if (!this.usuario.cedula) {
       alert('Ingrese una cedula');
     } else {
-      this.baseService.queryGet('usuario', this.usuario.cedula).subscribe(result => {
-      if (result != null) {
-        this.usuario.cedula = result['cedula'];
-        this.usuario.nombres = result['nombres'];
-        this.usuario.apellidos = result['apellidos'];
-        this.usuario.fechaNacimiento = result['fechaNacimiento'];
-      } else {
-        alert('No se encuentra informacion');
+      this.usuario = this.servicioUsuario.buscar(this.usuario.cedula);
+      if (this.usuario != null) {
+        this.usuario = this.usuario;
+        this.usuario.cedula = this.usuario.cedula;
+        this.usuario.nombres = this.usuario.nombres;
+        this.usuario.apellidos = this.usuario.apellidos;
+        this.usuario.fechaNacimiento = this.usuario.fechaNacimiento;
       }
-    }, err => {
-        alert(err.error.message);
-    });
    }
   }
 
