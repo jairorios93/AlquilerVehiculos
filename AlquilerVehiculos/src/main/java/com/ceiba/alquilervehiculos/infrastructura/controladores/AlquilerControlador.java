@@ -26,13 +26,13 @@ public class AlquilerControlador {
 		this.manejadorDevolverVehiculo = manejadorDevolverVehiculo;
 	}
 
-	@PostMapping("/alquilerVehiculo")
-	public void alquilarVehiculo(@RequestBody ComandoAlquilarVehiculo alquilarVehiculo) {
-		manejadorAlquilarVehiculo.alquilarVehiculo(alquilarVehiculo);
+	@PostMapping
+	public void alquilar(@RequestBody ComandoAlquilarVehiculo alquilarVehiculo) {
+		manejadorAlquilarVehiculo.alquilar(alquilarVehiculo);
 	}
 
-	@GetMapping("/devolucionVehiculo/{PLACA}")
-	public void devolverVehiculo(@PathVariable(name = "PLACA") String placa) {
-		manejadorDevolverVehiculo.devolverVehiculo(placa);
+	@GetMapping("/{PLACA}")
+	public void devolver(@PathVariable(name = "PLACA") String placa) {
+		manejadorDevolverVehiculo.devolver(placa);
 	}
 }

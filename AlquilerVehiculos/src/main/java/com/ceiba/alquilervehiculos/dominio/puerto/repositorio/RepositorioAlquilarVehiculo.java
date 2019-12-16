@@ -7,10 +7,10 @@ import com.ceiba.alquilervehiculos.dominio.modelo.dto.AlquilarVehiculoDTO;
 
 public interface RepositorioAlquilarVehiculo {
 
-	public void alquilarVehiculo(AlquilarVehiculo alquilarVehiculo);
+	public void alquilar(AlquilarVehiculo alquilarVehiculo);
 
-	public AlquilarVehiculoDTO buscarAlquilarVehiculo(String placa);
+	public AlquilarVehiculoDTO buscar(String placa);
 
-	public void devolverVehiculo(Long id, boolean estado, Date fecha, double valor);
+	public void devolver(Long id, boolean estado, Date fecha, double valor);
 
 }

@@ -21,8 +21,8 @@ public class ManejadorAlquilarVehiculo {
 	}
 
 	@Transactional
-	public void alquilarVehiculo(ComandoAlquilarVehiculo comandoAlquilarVehiculo) {
+	public void alquilar(ComandoAlquilarVehiculo comandoAlquilarVehiculo) {
 		AlquilarVehiculo alquilarVehiculo = fabricaAlquilarVehiculo.crearAlquiler(comandoAlquilarVehiculo);
-		servicioAlquilarVehiculo.alquilarVehiculo(alquilarVehiculo);
+		servicioAlquilarVehiculo.alquilar(alquilarVehiculo);
 	}
 }

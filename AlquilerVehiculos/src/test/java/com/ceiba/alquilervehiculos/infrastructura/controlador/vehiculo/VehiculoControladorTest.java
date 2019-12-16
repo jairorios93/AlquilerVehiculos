@@ -4,6 +4,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
@@ -20,8 +21,6 @@ import org.springframework.web.context.WebApplicationContext;
 import com.ceiba.alquilervehiculos.AlquilerVehiculosApplication;
 import com.ceiba.alquilervehiculos.aplicacion.comando.ComandoVehiculo;
 import com.ceiba.alquilervehiculos.databuilder.ComandoVehiculoDataBuilder;
-import com.ceiba.alquilervehiculos.databuilder.VehiculoDTODataBuilder;
-import com.ceiba.alquilervehiculos.dominio.modelo.dto.VehiculoDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
@@ -46,35 +45,32 @@ public class VehiculoControladorTest {
 	@Test
 	void registrarVehiculo() throws Exception {
 		ComandoVehiculo comandoVehiculo = new ComandoVehiculoDataBuilder().conPlaca("ASD89");
-		mvc.perform(post("/vehiculo/registroVehiculo").contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(post("/vehiculo").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(comandoVehiculo))).andDo(print()).andExpect(status().isOk());
 	}
 
 	@Test
 	void buscarVehiculo() throws Exception {
 		ComandoVehiculo comandoVehiculo = new ComandoVehiculoDataBuilder().conPlaca("ASD88");
-		mvc.perform(post("/vehiculo/registroVehiculo").contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(post("/vehiculo").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(comandoVehiculo))).andDo(print()).andExpect(status().isOk());
 
-		VehiculoDTO vehiculoDTO = new VehiculoDTODataBuilder().build();
-		mvc.perform(
-				get("/vehiculo/busquedaVehiculo/{PLACA}", vehiculoDTO.getPlaca()).contentType(MediaType.APPLICATION_JSON))
-				.andDo(print()).andExpect(status().isOk());
+		mvc.perform(get("/vehiculo/{PLACA}", comandoVehiculo.getPlaca()).contentType(MediaType.APPLICATION_JSON))
+				.andDo(print()).andExpect(jsonPath("$.placa").value(comandoVehiculo.getPlaca()));
 	}
 
 	@Test
 	void registrarVehiculoExistente() throws Exception {
 		ComandoVehiculo comandoVehiculo = new ComandoVehiculoDataBuilder().conPlaca("ASD87");
-		mvc.perform(post("/vehiculo/registroVehiculo").contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(post("/vehiculo").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(comandoVehiculo))).andDo(print()).andExpect(status().isOk());
 		try {
-			mvc.perform(post("/vehiculo/registroVehiculo").contentType(MediaType.APPLICATION_JSON)
+			mvc.perform(post("/vehiculo").contentType(MediaType.APPLICATION_JSON)
 					.content(objectMapper.writeValueAsString(comandoVehiculo))).andDo(print())
 					.andExpect(status().isInternalServerError());
 		} catch (Exception e) {
 			System.err.println(e.getCause().getMessage());
 		}
-
 	}
 
 }

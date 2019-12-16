@@ -15,12 +15,12 @@ public class ServicioCrearVehiculo {
 		this.repositorioVehiculo = repositorioVehiculo;
 	}
 
-	public void registrarVehiculo(Vehiculo vehiculo) {
-		VehiculoDTO vehiculoDTO = repositorioVehiculo.buscarVehiculo(vehiculo.getPlaca());
+	public void registrar(Vehiculo vehiculo) {
+		VehiculoDTO vehiculoDTO = repositorioVehiculo.buscar(vehiculo.getPlaca());
 		if (vehiculoDTO != null) {
 			throw new ExcepcionNegocio(VEHICULO_EXISTE + vehiculo.getPlaca());
 		} else {
-			repositorioVehiculo.registrarVehiculo(vehiculo);
+			repositorioVehiculo.registrar(vehiculo);
 		}
 	}
 }

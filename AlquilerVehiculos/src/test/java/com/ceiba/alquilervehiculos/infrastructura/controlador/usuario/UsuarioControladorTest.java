@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
@@ -23,8 +24,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ceiba.alquilervehiculos.AlquilerVehiculosApplication;
 import com.ceiba.alquilervehiculos.aplicacion.comando.ComandoUsuario;
 import com.ceiba.alquilervehiculos.databuilder.ComandoUsuarioDataBuilder;
-import com.ceiba.alquilervehiculos.databuilder.UsuarioDTODataBuilder;
-import com.ceiba.alquilervehiculos.dominio.modelo.dto.UsuarioDTO;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = AlquilerVehiculosApplication.class)
@@ -48,25 +47,23 @@ public class UsuarioControladorTest {
 	@Test
 	void registrarUsuario() throws Exception {
 		ComandoUsuario comandoUsuario = new ComandoUsuarioDataBuilder().build();
-		mvc.perform(post("/usuario/registroUsuario").contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(post("/usuario").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(comandoUsuario))).andDo(print()).andExpect(status().isOk());
 	}
 
 	@Test
 	void buscarUsuario() throws Exception {
 		ComandoUsuario comandoUsuario = new ComandoUsuarioDataBuilder().build();
-		mvc.perform(post("/usuario/registroUsuario").contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(post("/usuario").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(comandoUsuario))).andDo(print()).andExpect(status().isOk());
 
-		UsuarioDTO usuarioDTO = new UsuarioDTODataBuilder().build();
-		mvc.perform(
-				get("/usuario/busquedaUsuario/{CEDULA}", usuarioDTO.getCedula()).contentType(MediaType.APPLICATION_JSON))
-				.andDo(print()).andExpect(status().isOk());
+		mvc.perform(get("/usuario/{CEDULA}", comandoUsuario.getCedula()).contentType(MediaType.APPLICATION_JSON))
+				.andDo(print()).andExpect(jsonPath("$.cedula").value(comandoUsuario.getCedula()));
 	}
 
 	@Test
-	void buscarUsuarioNoEncontrado() throws Exception {
-		mvc.perform(get("/usuario/busquedaUsuario/{CEDULA}", 1L).contentType(MediaType.APPLICATION_JSON)).andDo(print())
+	void usuarioNoEncontrado() throws Exception {
+		mvc.perform(get("/usuario/{CEDULA}", 1L).contentType(MediaType.APPLICATION_JSON)).andDo(print())
 				.andExpect(content().string(""));
 	}
 }

@@ -5,7 +5,7 @@ import com.ceiba.alquilervehiculos.dominio.modelo.dto.VehiculoDTO;
 
 public interface RepositorioVehiculo {
 
-	public void registrarVehiculo(Vehiculo vehiculo);
+	public void registrar(Vehiculo vehiculo);
 
-	public VehiculoDTO buscarVehiculo(String placa);
+	public VehiculoDTO buscar(String placa);
 }

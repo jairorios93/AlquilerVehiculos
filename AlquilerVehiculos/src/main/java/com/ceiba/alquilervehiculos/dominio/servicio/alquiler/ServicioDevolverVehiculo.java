@@ -18,8 +18,8 @@ public class ServicioDevolverVehiculo {
 		this.repositorioAlquilarVehiculo = repositorioAlquilarVehiculo;
 	}
 
-	public void devolverVehiculo(String placa) {
-		AlquilarVehiculoDTO alquilarVehiculoDTO = repositorioAlquilarVehiculo.buscarAlquilarVehiculo(placa);
+	public void devolver(String placa) {
+		AlquilarVehiculoDTO alquilarVehiculoDTO = repositorioAlquilarVehiculo.buscar(placa);
 		if (alquilarVehiculoDTO == null) {
 			throw new ExcepcionNegocio(VEHICULO_NO_ENCONTRADO + placa);
 		} else {
@@ -41,7 +41,7 @@ public class ServicioDevolverVehiculo {
 						+ alquilarVehiculoDTO.getValor() * ((DEVOLUCION_ATRASADA) * (diasDiferencia * -1));
 			}
 
-			repositorioAlquilarVehiculo.devolverVehiculo(alquilarVehiculoDTO.getId(), false, hoy.getTime(),
+			repositorioAlquilarVehiculo.devolver(alquilarVehiculoDTO.getId(), false, hoy.getTime(),
 					Double.valueOf(String.format("%.0f", valorPagar)));
 		}
 	}

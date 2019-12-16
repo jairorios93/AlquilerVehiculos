@@ -15,7 +15,7 @@ public class ManejadorDevolverVehiculo {
 	}
 
 	@Transactional
-	public void devolverVehiculo(String placa) {
-		servicioDevolverVehiculo.devolverVehiculo(placa);
+	public void devolver(String placa) {
+		servicioDevolverVehiculo.devolver(placa);
 	}
 }

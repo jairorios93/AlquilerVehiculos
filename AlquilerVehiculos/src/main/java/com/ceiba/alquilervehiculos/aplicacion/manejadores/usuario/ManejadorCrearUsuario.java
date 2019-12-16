@@ -20,8 +20,8 @@ public class ManejadorCrearUsuario {
 	}
 
 	@Transactional
-	public void registrarUsuario(ComandoUsuario comandoUsuario) {
+	public void registrar(ComandoUsuario comandoUsuario) {
 		Usuario usuario = fabricaUsuario.crearUsuario(comandoUsuario);
-		servicioCrearUsuario.registrarUsuario(usuario);
+		servicioCrearUsuario.registrar(usuario);
 	}
 }

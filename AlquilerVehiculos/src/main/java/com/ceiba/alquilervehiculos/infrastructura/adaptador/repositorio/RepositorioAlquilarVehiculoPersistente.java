@@ -22,15 +22,15 @@ public class RepositorioAlquilarVehiculoPersistente implements RepositorioAlquil
 	}
 
 	@Override
-	public void alquilarVehiculo(AlquilarVehiculo alquilarVehiculo) {
+	public void alquilar(AlquilarVehiculo alquilarVehiculo) {
 		AlquilarVehiculoEntidad alquilarVehiculoEntidad = modelMapper.map(alquilarVehiculo,
 				AlquilarVehiculoEntidad.class);
 		alquilarVehiculoRepositorioJPA.save(alquilarVehiculoEntidad);
 	}
 
 	@Override
-	public AlquilarVehiculoDTO buscarAlquilarVehiculo(String placa) {
-		AlquilarVehiculoEntidad alquilarVehiculoEntidad = alquilarVehiculoRepositorioJPA.buscarAlquiler(placa);
+	public AlquilarVehiculoDTO buscar(String placa) {
+		AlquilarVehiculoEntidad alquilarVehiculoEntidad = alquilarVehiculoRepositorioJPA.buscar(placa);
 		if (alquilarVehiculoEntidad != null) {
 			return modelMapper.map(alquilarVehiculoEntidad, AlquilarVehiculoDTO.class);
 		} else {
@@ -39,8 +39,8 @@ public class RepositorioAlquilarVehiculoPersistente implements RepositorioAlquil
 	}
 
 	@Override
-	public void devolverVehiculo(Long id, boolean estado, Date fecha, double valor) {
-		alquilarVehiculoRepositorioJPA.devolverVehiculo(id, estado, fecha, valor);
+	public void devolver(Long id, boolean estado, Date fecha, double valor) {
+		alquilarVehiculoRepositorioJPA.devolver(id, estado, fecha, valor);
 	}
 
 }

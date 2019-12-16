@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\e2e",
+    "\\e2e\\src",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\core\\services",
+    "\\src\\app\\feature\\alquiler\\administrar-alquiler",
+    "\\src\\app\\feature\\usuario",
+    "\\src\\app\\feature\\usuario\\administrar-usuario",
+    "\\src\\app\\feature\\vehiculo\\administrar-vehiculo"
+  ],
+  "SelectedNode": "\\e2e\\src\\app.e2e-spec.ts",
+  "PreviewInSolutionExplorer": false
+}

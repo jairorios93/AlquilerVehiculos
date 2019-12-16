@@ -29,7 +29,7 @@ export class AdministrarUsuarioComponent implements OnInit {
         apellidos: this.usuario.apellidos,
         fechaNacimiento: this.usuario.fechaNacimiento
       };
-      this.baseService.queryPost('usuario/registroUsuario', enviarUsuario).subscribe(result => {
+      this.baseService.queryPost('usuario', enviarUsuario).subscribe(result => {
         alert('El usuario ha sido registrado')
         this.limpiarVentana();
       }, err => {
@@ -43,7 +43,7 @@ export class AdministrarUsuarioComponent implements OnInit {
     if (!this.usuario.cedula) {
       alert('Ingrese una cedula');
     } else {
-      this.baseService.queryGet('usuario/busquedaUsuario', this.usuario.cedula).subscribe(result => {
+      this.baseService.queryGet('usuario', this.usuario.cedula).subscribe(result => {
       if (result != null) {
         this.usuario.cedula = result['cedula'];
         this.usuario.nombres = result['nombres'];

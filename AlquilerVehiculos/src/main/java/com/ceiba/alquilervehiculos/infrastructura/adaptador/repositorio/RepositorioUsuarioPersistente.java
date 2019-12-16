@@ -21,14 +21,13 @@ public class RepositorioUsuarioPersistente implements RepositorioUsuario {
 	}
 
 	@Override
-	public void registrarUsuario(Usuario usuario) {
+	public void registrar(Usuario usuario) {
 		UsuarioEntidad usuarioEntidad = modelMapper.map(usuario, UsuarioEntidad.class);
 		usuarioRepositorioJPA.save(usuarioEntidad);
-		usuarioRepositorioJPA.findAll().size();
 	}
 
 	@Override
-	public UsuarioDTO buscarUsuario(Long cedula) {
+	public UsuarioDTO buscar(Long cedula) {
 		Optional<UsuarioEntidad> usuarioEntidad = usuarioRepositorioJPA.findById(cedula);
 		return usuarioEntidad.isPresent() ? modelMapper.map(usuarioEntidad.get(), UsuarioDTO.class) : null;
 	}

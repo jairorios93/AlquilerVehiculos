@@ -16,7 +16,7 @@ public class ManejadorBuscarUsuario {
 	}
 
 	@Transactional
-	public UsuarioDTO buscarUsuario(Long cedula) {
-		return servicioBuscarUsuario.buscarUsuario(cedula);
+	public UsuarioDTO buscar(Long cedula) {
+		return servicioBuscarUsuario.buscar(cedula);
 	}
 }

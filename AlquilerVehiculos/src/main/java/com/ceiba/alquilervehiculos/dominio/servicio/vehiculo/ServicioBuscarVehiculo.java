@@ -11,7 +11,7 @@ public class ServicioBuscarVehiculo {
 		this.repositorioVehiculo = repositorioVehiculo;
 	}
 
-	public VehiculoDTO buscarVehiculo(String placa) {
-		return repositorioVehiculo.buscarVehiculo(placa);
+	public VehiculoDTO buscar(String placa) {
+		return repositorioVehiculo.buscar(placa);
 	}
 }

@@ -1,6 +1,6 @@
 package com.ceiba.alquilervehiculos.dominio.servicio.vehiculo;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 
 import org.junit.jupiter.api.Test;
@@ -17,11 +17,11 @@ public class ServicioBuscarVehiculoTest {
 		RepositorioVehiculo repositorioVehiculo = mock(RepositorioVehiculo.class);
 		VehiculoDTO vehiculoDTO = new VehiculoDTODataBuilder().build();
 
-		Mockito.when(repositorioVehiculo.buscarVehiculo("ASF13")).thenReturn(vehiculoDTO);
+		Mockito.when(repositorioVehiculo.buscar("ASF13")).thenReturn(vehiculoDTO);
 		ServicioBuscarVehiculo service = new ServicioBuscarVehiculo(repositorioVehiculo);
 
-		VehiculoDTO resultado = service.buscarVehiculo("ASF13");
+		VehiculoDTO resultado = service.buscar("ASF13");
 
-		assertNotNull(resultado);
+		assertEquals(resultado.getPlaca(), vehiculoDTO.getPlaca());
 	}
 }

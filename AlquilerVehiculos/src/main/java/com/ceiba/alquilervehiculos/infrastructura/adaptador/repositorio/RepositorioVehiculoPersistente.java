@@ -20,14 +20,14 @@ public class RepositorioVehiculoPersistente implements RepositorioVehiculo {
 	}
 
 	@Override
-	public void registrarVehiculo(Vehiculo vehiculo) {
+	public void registrar(Vehiculo vehiculo) {
 		VehiculoEntidad vehiculoEntidad = modelMapper.map(vehiculo, VehiculoEntidad.class);
 		vehiculoRepositorioJPA.save(vehiculoEntidad);
 	}
 
 	@Override
-	public VehiculoDTO buscarVehiculo(String placa) {
-		VehiculoEntidad vehiculoEntidad = vehiculoRepositorioJPA.buscarVehiculo(placa);
+	public VehiculoDTO buscar(String placa) {
+		VehiculoEntidad vehiculoEntidad = vehiculoRepositorioJPA.buscar(placa);
 		if (vehiculoEntidad != null) {
 			return modelMapper.map(vehiculoEntidad, VehiculoDTO.class);
 		} else {

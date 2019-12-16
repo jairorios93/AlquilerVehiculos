@@ -5,7 +5,7 @@ import com.ceiba.alquilervehiculos.dominio.modelo.dto.UsuarioDTO;
 
 public interface RepositorioUsuario {
 
-	public void registrarUsuario(Usuario usuario);
+	public void registrar(Usuario usuario);
 
-	public UsuarioDTO buscarUsuario(Long cedula);
+	public UsuarioDTO buscar(Long cedula);
 }

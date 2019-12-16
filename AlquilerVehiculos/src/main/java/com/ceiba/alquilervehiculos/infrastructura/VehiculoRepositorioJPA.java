@@ -10,5 +10,5 @@ import com.ceiba.alquilervehiculos.infrastructura.entidades.VehiculoEntidad;
 public interface VehiculoRepositorioJPA extends JpaRepository<VehiculoEntidad, Long> {
 
 	@Query("select v from VehiculoEntidad v where v.placa = ?1")
-	public VehiculoEntidad buscarVehiculo(String placa);
+	public VehiculoEntidad buscar(String placa);
 }

@@ -1,6 +1,6 @@
 package com.ceiba.alquilervehiculos.dominio.servicio.usuario;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 
 import org.junit.jupiter.api.Test;
@@ -16,11 +16,11 @@ public class ServicioBuscarUsuarioTest {
 	void obtenerUsuario() {
 		RepositorioUsuario repositorioUsuario = mock(RepositorioUsuario.class);
 		UsuarioDTO usuarioDTO = new UsuarioDTODataBuilder().build();
-		Mockito.when(repositorioUsuario.buscarUsuario(Long.valueOf("1094935130"))).thenReturn(usuarioDTO);
+		Mockito.when(repositorioUsuario.buscar(Long.valueOf("1094935130"))).thenReturn(usuarioDTO);
 		ServicioBuscarUsuario service = new ServicioBuscarUsuario(repositorioUsuario);
 
-		UsuarioDTO resultado = service.buscarUsuario(Long.valueOf("1094935130"));
+		UsuarioDTO resultado = service.buscar(Long.valueOf("1094935130"));
 
-		assertNotNull(resultado);
+		assertEquals(resultado.getNombres(), usuarioDTO.getNombres());
 	}
 }

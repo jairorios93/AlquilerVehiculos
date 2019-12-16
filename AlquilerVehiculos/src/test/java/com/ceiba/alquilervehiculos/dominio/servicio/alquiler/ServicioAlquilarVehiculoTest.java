@@ -20,6 +20,6 @@ public class ServicioAlquilarVehiculoTest {
 
 		ServicioAlquilarVehiculo service = new ServicioAlquilarVehiculo(repositorioAlquilarVehiculo,
 				repositorioVehiculo);
-		assertDoesNotThrow(() -> service.alquilarVehiculo(alquilarVehiculo));
+		assertDoesNotThrow(() -> service.alquilar(alquilarVehiculo));
 	}
 }

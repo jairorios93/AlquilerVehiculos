@@ -16,8 +16,8 @@ public class ManejadorBuscarVehiculo {
 	}
 
 	@Transactional
-	public VehiculoDTO buscarVehiculo(String placa) {
-		return servicioBuscarVehiculo.buscarVehiculo(placa);
+	public VehiculoDTO buscar(String placa) {
+		return servicioBuscarVehiculo.buscar(placa);
 	}
 
 }

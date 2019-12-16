@@ -14,12 +14,12 @@ public class ServicioCrearUsuario {
 		this.repositorioUsuario = repositorioUsuario;
 	}
 
-	public void registrarUsuario(Usuario usuario) {
+	public void registrar(Usuario usuario) {
 		GregorianCalendar fecha = new GregorianCalendar();
 		fecha.setTime(usuario.getFechaNacimiento());
 		fecha.add(Calendar.DATE, 1);
 
 		usuario.setFechaNacimiento(fecha.getTime());
-		repositorioUsuario.registrarUsuario(usuario);
+		repositorioUsuario.registrar(usuario);
 	}
 }

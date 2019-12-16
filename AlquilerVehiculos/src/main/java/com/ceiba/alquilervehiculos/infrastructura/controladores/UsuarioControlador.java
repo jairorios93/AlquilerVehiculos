@@ -27,14 +27,14 @@ public class UsuarioControlador {
 		this.manejadorBuscarUsuario = manejadorBuscarUsuario;
 	}
 
-	@PostMapping("/registroUsuario")
-	public void registrarUsuario(@RequestBody ComandoUsuario usuario) {
-		manejadorCrearUsuario.registrarUsuario(usuario);
+	@PostMapping
+	public void registrar(@RequestBody ComandoUsuario usuario) {
+		manejadorCrearUsuario.registrar(usuario);
 	}
 
-	@GetMapping("/busquedaUsuario/{CEDULA}")
-	public UsuarioDTO buscarUsuario(@PathVariable(name = "CEDULA") Long cedula) {
-		return this.manejadorBuscarUsuario.buscarUsuario(cedula);
+	@GetMapping("/{CEDULA}")
+	public UsuarioDTO buscar(@PathVariable(name = "CEDULA") Long cedula) {
+		return this.manejadorBuscarUsuario.buscar(cedula);
 	}
 
 }

@@ -3,6 +3,7 @@ package com.ceiba.alquilervehiculos.infrastructura.controlador.alquiler;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Before;
@@ -24,10 +25,6 @@ import com.ceiba.alquilervehiculos.aplicacion.comando.ComandoVehiculo;
 import com.ceiba.alquilervehiculos.databuilder.ComandoAlquilarVehiculoDataBuilder;
 import com.ceiba.alquilervehiculos.databuilder.ComandoUsuarioDataBuilder;
 import com.ceiba.alquilervehiculos.databuilder.ComandoVehiculoDataBuilder;
-import com.ceiba.alquilervehiculos.databuilder.UsuarioDTODataBuilder;
-import com.ceiba.alquilervehiculos.databuilder.VehiculoDTODataBuilder;
-import com.ceiba.alquilervehiculos.dominio.modelo.dto.UsuarioDTO;
-import com.ceiba.alquilervehiculos.dominio.modelo.dto.VehiculoDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
@@ -52,85 +49,81 @@ public class AlquilerControladorTest {
 	@Test
 	void devolverVehiculoFechaFinMayor() throws Exception {
 		ComandoVehiculo comandoVehiculo = new ComandoVehiculoDataBuilder().build();
-		mvc.perform(post("/vehiculo/registroVehiculo").contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(post("/vehiculo").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(comandoVehiculo))).andDo(print()).andExpect(status().isOk());
 
-		VehiculoDTO vehiculoDTO = new VehiculoDTODataBuilder().build();
-		mvc.perform(get("/vehiculo/busquedaVehiculo/{PLACA}", vehiculoDTO.getPlaca())
-				.contentType(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk());
+		mvc.perform(get("/vehiculo/{PLACA}", comandoVehiculo.getPlaca()).contentType(MediaType.APPLICATION_JSON))
+				.andDo(print()).andExpect(jsonPath("$.placa").value(comandoVehiculo.getPlaca()));
 
 		ComandoUsuario comandoUsuario = new ComandoUsuarioDataBuilder().build();
-		mvc.perform(post("/usuario/registroUsuario").contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(post("/usuario").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(comandoUsuario))).andDo(print()).andExpect(status().isOk());
 
-		UsuarioDTO usuarioDTO = new UsuarioDTODataBuilder().build();
-		mvc.perform(get("/usuario/busquedaUsuario/{CEDULA}", usuarioDTO.getCedula())
-				.contentType(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk());
+		mvc.perform(get("/usuario/{CEDULA}", comandoUsuario.getCedula()).contentType(MediaType.APPLICATION_JSON))
+				.andDo(print()).andExpect(jsonPath("$.cedula").value(comandoUsuario.getCedula()));
 
 		ComandoAlquilarVehiculo comandoAlquilarVehiculo = new ComandoAlquilarVehiculoDataBuilder()
 				.conVehiculoYFecha(comandoVehiculo, 5);
-		mvc.perform(post("/alquiler/alquilerVehiculo").contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(post("/alquiler").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(comandoAlquilarVehiculo))).andDo(print())
 				.andExpect(status().isOk());
 
-		mvc.perform(get("/alquiler/devolucionVehiculo/{PLACA}", comandoAlquilarVehiculo.getVehiculo().getPlaca())
-				.contentType(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk());
+		mvc.perform(get("/alquiler/{PLACA}", comandoAlquilarVehiculo.getVehiculo().getPlaca())
+				.contentType(MediaType.APPLICATION_JSON)).andDo(print())
+				.andExpect(status().isOk());
 	}
 
 	@Test
 	void devolverVehiculoFechaFinMenor() throws Exception {
 		ComandoVehiculo comandoVehiculo = new ComandoVehiculoDataBuilder().conPlaca("QWE123");
-		mvc.perform(post("/vehiculo/registroVehiculo").contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(post("/vehiculo").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(comandoVehiculo))).andDo(print()).andExpect(status().isOk());
 
-		VehiculoDTO vehiculoDTO = new VehiculoDTODataBuilder().build();
-		mvc.perform(get("/vehiculo/busquedaVehiculo/{PLACA}", vehiculoDTO.getPlaca())
-				.contentType(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk());
+		mvc.perform(get("/vehiculo/{PLACA}", comandoVehiculo.getPlaca()).contentType(MediaType.APPLICATION_JSON))
+				.andDo(print()).andExpect(jsonPath("$.placa").value(comandoVehiculo.getPlaca()));
 
 		ComandoUsuario comandoUsuario = new ComandoUsuarioDataBuilder().build();
-		mvc.perform(post("/usuario/registroUsuario").contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(post("/usuario").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(comandoUsuario))).andDo(print()).andExpect(status().isOk());
 
-		UsuarioDTO usuarioDTO = new UsuarioDTODataBuilder().build();
-		mvc.perform(get("/usuario/busquedaUsuario/{CEDULA}", usuarioDTO.getCedula())
-				.contentType(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk());
+		mvc.perform(get("/usuario/{CEDULA}", comandoUsuario.getCedula()).contentType(MediaType.APPLICATION_JSON))
+				.andDo(print()).andExpect(jsonPath("$.cedula").value(comandoUsuario.getCedula()));
 
 		ComandoAlquilarVehiculo comandoAlquilarVehiculo = new ComandoAlquilarVehiculoDataBuilder()
 				.conVehiculoYFecha(comandoVehiculo, -5);
-		mvc.perform(post("/alquiler/alquilerVehiculo").contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(post("/alquiler").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(comandoAlquilarVehiculo))).andDo(print())
 				.andExpect(status().isOk());
 
-		mvc.perform(get("/alquiler/devolucionVehiculo/{PLACA}", comandoAlquilarVehiculo.getVehiculo().getPlaca())
-				.contentType(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk());
+		mvc.perform(get("/alquiler/{PLACA}", comandoAlquilarVehiculo.getVehiculo().getPlaca())
+				.contentType(MediaType.APPLICATION_JSON)).andDo(print())
+				.andExpect(status().isOk());
 	}
 
 	@Test
 	void alquilarVehiculoSinDevolver() throws Exception {
 		ComandoVehiculo comandoVehiculo = new ComandoVehiculoDataBuilder().conPlaca("QWE12345");
-		mvc.perform(post("/vehiculo/registroVehiculo").contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(post("/vehiculo").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(comandoVehiculo))).andDo(print()).andExpect(status().isOk());
 
-		VehiculoDTO vehiculoDTO = new VehiculoDTODataBuilder().build();
-		mvc.perform(get("/vehiculo/busquedaVehiculo/{PLACA}", vehiculoDTO.getPlaca())
-				.contentType(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk());
+		mvc.perform(get("/vehiculo/{PLACA}", comandoVehiculo.getPlaca()).contentType(MediaType.APPLICATION_JSON))
+				.andDo(print()).andExpect(jsonPath("$.placa").value(comandoVehiculo.getPlaca()));
 
 		ComandoUsuario comandoUsuario = new ComandoUsuarioDataBuilder().build();
-		mvc.perform(post("/usuario/registroUsuario").contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(post("/usuario").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(comandoUsuario))).andDo(print()).andExpect(status().isOk());
 
-		UsuarioDTO usuarioDTO = new UsuarioDTODataBuilder().build();
-		mvc.perform(get("/usuario/busquedaUsuario/{CEDULA}", usuarioDTO.getCedula())
-				.contentType(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk());
+		mvc.perform(get("/usuario/{CEDULA}", comandoUsuario.getCedula()).contentType(MediaType.APPLICATION_JSON))
+				.andDo(print()).andExpect(jsonPath("$.cedula").value(comandoUsuario.getCedula()));
 
 		ComandoAlquilarVehiculo comandoAlquilarVehiculo = new ComandoAlquilarVehiculoDataBuilder()
 				.conVehiculoYFecha(comandoVehiculo, -5);
-		mvc.perform(post("/alquiler/alquilerVehiculo").contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(post("/alquiler").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(comandoAlquilarVehiculo))).andDo(print())
 				.andExpect(status().isOk());
 
 		try {
-			mvc.perform(post("/alquiler/alquilerVehiculo").contentType(MediaType.APPLICATION_JSON)
+			mvc.perform(post("/alquiler").contentType(MediaType.APPLICATION_JSON)
 					.content(objectMapper.writeValueAsString(comandoAlquilarVehiculo))).andDo(print())
 					.andExpect(status().isInternalServerError());
 		} catch (Exception e) {
@@ -141,8 +134,8 @@ public class AlquilerControladorTest {
 	@Test
 	void devolverVehiculoNoEncontrado() throws Exception {
 		try {
-			mvc.perform(get("/alquiler/devolucionVehiculo/{PLACA}", 1L).contentType(MediaType.APPLICATION_JSON))
-					.andDo(print()).andExpect(status().isInternalServerError());
+			mvc.perform(get("/alquiler/{PLACA}", 1L).contentType(MediaType.APPLICATION_JSON)).andDo(print())
+					.andExpect(status().isInternalServerError());
 		} catch (Exception e) {
 			System.err.println(e.getCause().getMessage());
 		}

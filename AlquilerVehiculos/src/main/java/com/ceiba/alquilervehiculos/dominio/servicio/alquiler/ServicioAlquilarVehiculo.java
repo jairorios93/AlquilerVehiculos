@@ -24,15 +24,15 @@ public class ServicioAlquilarVehiculo {
 		this.repositorioVehiculo = repositorioVehiculo;
 	}
 
-	public void alquilarVehiculo(AlquilarVehiculo alquilarVehiculo) {
-		VehiculoDTO vehiculoDTO = repositorioVehiculo.buscarVehiculo(alquilarVehiculo.getVehiculo().getPlaca());
+	public void alquilar(AlquilarVehiculo alquilarVehiculo) {
+		VehiculoDTO vehiculoDTO = repositorioVehiculo.buscar(alquilarVehiculo.getVehiculo().getPlaca());
 
 		if (vehiculoDTO != null) {
 			alquilarVehiculo.getVehiculo().setId(vehiculoDTO.getId());
 		}
 
 		AlquilarVehiculoDTO alquilarVehiculoDTO = repositorioAlquilarVehiculo
-				.buscarAlquilarVehiculo(alquilarVehiculo.getVehiculo().getPlaca());
+				.buscar(alquilarVehiculo.getVehiculo().getPlaca());
 
 		if (alquilarVehiculoDTO != null && alquilarVehiculoDTO.isEstado()) {
 			throw new ExcepcionNegocio(VEHICULO_SIN_DEVOLVER);
@@ -57,7 +57,7 @@ public class ServicioAlquilarVehiculo {
 
 				alquilarVehiculo.setValor(nuevoValorAlquiler);
 			}
-			repositorioAlquilarVehiculo.alquilarVehiculo(alquilarVehiculo);
+			repositorioAlquilarVehiculo.alquilar(alquilarVehiculo);
 		}
 	}
 
